@@ -148,6 +148,9 @@ function nimbus_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	wp_enqueue_script('nimbus-app', get_template_directory_uri() . '/build/index.js', ['wp-element', 'wp-api-fetch'], _S_VERSION, true);
+
 }
 add_action( 'wp_enqueue_scripts', 'nimbus_scripts' );
 

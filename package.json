@@ -51,6 +51,7 @@
     "test:unit": "wp-scripts test-unit-js"
   },
   "dependencies": {
+    "fuse.js": "^6.4.6",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.1.1",
     "styled-components": "^5.3.3"

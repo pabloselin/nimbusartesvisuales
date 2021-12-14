@@ -151,8 +151,41 @@ function nimbus_scripts() {
 
 	wp_enqueue_script('nimbus-app', get_template_directory_uri() . '/build/index.js', ['wp-element', 'wp-api-fetch'], _S_VERSION, true);
 
+	wp_localize_script('nimbus-app', 'nimbus_app_data', array(
+		'disciplina' 	=> nimbus_get_plainterms('disciplina'),
+		'territorio'		=> nimbus_get_plainterms('territorio')
+	));
 }
+
 add_action( 'wp_enqueue_scripts', 'nimbus_scripts' );
+
+function nimbus_get_plainterms($taxonomy) {
+	$terms = get_terms(
+			array( 	
+				'taxonomy' 	=> $taxonomy
+				)
+			);
+	$plainterms = [];
+	
+	foreach($terms as $term) {
+		$plainterms[] = $term;
+	}
+
+	return $plainterms;
+}
+
+function nimbus_fonts() {
+	?>
+	<!-- Google Fonts Stuff -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
+	<!-- End Google Fonts Stuff -->
+	<?php
+
+	}
+
+add_action('wp_head', 'nimbus_fonts');
 
 /**
  * Implement the Custom Header feature.
@@ -181,3 +214,8 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+* Extend search to postmeta
+**/
+
+//require get_template_directory() . '/inc/extend-search.php';

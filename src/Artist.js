@@ -5,20 +5,20 @@ import { Link, useParams } from "react-router-dom";
 const Artist = (props) => {
 	//fetch single artist
 	const [artist, setArtist] = useState([{ data: null }]);
-	let params = useParams();
-	let slug = params.artistSlug;
+	const { artistSlug } = useParams();
 
 	useEffect(() => {
-		let fetchroute = "/nimbus/v1/artistsingle?slug=" + slug;
-
-		async function getArtist() {
+		async function getArtist(artistSlug) {
+			let fetchroute = "/nimbus/v1/artistsingle?slug=" + artistSlug;
 			apiFetch({ path: fetchroute }).then((result) => {
 				setArtist({ data: result });
 			});
 		}
 		console.log("fetching single artist");
-		getArtist();
-	}, [artist]);
+		if (artistSlug !== undefined) {
+			getArtist(artistSlug);
+		}
+	}, [artistSlug]);
 
 	return (
 		<>

@@ -22,7 +22,10 @@ const NimbusApp = (props) => {
 		<>
 			<Router>
 				<Routes>
-					<Route path="/" element={<App />}>
+					<Route
+						path="/"
+						element={<App localData={props.localData} />}
+					>
 						<Route
 							path="/artistas"
 							element={
@@ -32,6 +35,29 @@ const NimbusApp = (props) => {
 							<Route path=":artistSlug" element={<Artist />} />
 						</Route>
 						<Route path="/serie" element={<Series />} />
+
+						<Route path="/disciplina">
+							<Route
+								path=":termSlug"
+								element={
+									<Artists
+										taxonomy="disciplina"
+										artistfetchurl="nimbus/v1/artiststax"
+									/>
+								}
+							/>
+						</Route>
+						<Route path="/territorio">
+							<Route
+								path=":termSlug"
+								element={
+									<Artists
+										artistfetchurl="nimbus/v1/artiststax"
+										taxonomy="territorio"
+									/>
+								}
+							/>
+						</Route>
 						<Route path="/buscador" element={<Search />} />
 						<Route
 							path="*"
@@ -51,5 +77,5 @@ const NimbusApp = (props) => {
 const nimbusRoot = document.getElementById("nimbusRoot");
 
 if (nimbusRoot) {
-	render(<NimbusApp />, nimbusRoot);
+	render(<NimbusApp localData={nimbus_app_data} />, nimbusRoot);
 }

@@ -1,5 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import styled from "styled-components";
+import { Helmet } from "react-helmet";
 
 import TaxView from "./TaxView";
 
@@ -27,6 +28,12 @@ const Home = (props) => {
 
 	return (
 		<StyledApp>
+			<Helmet>
+				<title>
+					{nimbus_app_data.site_name} -{" "}
+					{nimbus_app_data.site_description}
+				</title>
+			</Helmet>
 			<header>
 				<Link to="/">Inicio</Link>
 				<Link to="/artistas">Artistas</Link>

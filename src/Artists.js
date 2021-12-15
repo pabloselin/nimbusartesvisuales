@@ -44,7 +44,7 @@ const Artists = (props) => {
 						<ArtistMini
 							artistname={`${artist.name} ${artist.lastname} ${artist.secondlastname}`}
 							artistlink={`/artistas/${artist.slug}`}
-							artistimg={artist.works[0].url}
+							artistimg={artist.works[0].images.url}
 							key={artist.id}
 						/>
 					))}

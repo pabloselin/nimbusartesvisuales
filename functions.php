@@ -140,8 +140,7 @@ add_action( 'widgets_init', 'nimbus_widgets_init' );
  * Enqueue scripts and styles.
  */
 function nimbus_scripts() {
-	wp_enqueue_style( 'nimbus-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'nimbus-style', 'rtl', 'replace' );
+	wp_enqueue_style( 'nimbus-style', get_template_directory_uri() . '/build/index.css' , array(), _S_VERSION );
 
 	wp_enqueue_script( 'nimbus-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
@@ -152,8 +151,10 @@ function nimbus_scripts() {
 	wp_enqueue_script('nimbus-app', get_template_directory_uri() . '/build/index.js', ['wp-element', 'wp-api-fetch'], _S_VERSION, true);
 
 	wp_localize_script('nimbus-app', 'nimbus_app_data', array(
-		'disciplina' 	=> nimbus_get_plainterms('disciplina'),
-		'territorio'		=> nimbus_get_plainterms('territorio')
+		'disciplina' 		=> nimbus_get_plainterms('disciplina'),
+		'territorio'		=> nimbus_get_plainterms('territorio'),
+		'site_name'			=> get_bloginfo( 'name' ),
+		'site_description'	=> get_bloginfo( 'description' )
 	));
 }
 
@@ -172,6 +173,10 @@ function nimbus_get_plainterms($taxonomy) {
 	}
 
 	return $plainterms;
+}
+
+function nimbus_get_plainterms_item($itemid, $taxonomy) {
+	return get_the_terms( $itemid, $taxonomy );
 }
 
 function nimbus_fonts() {

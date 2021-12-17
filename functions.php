@@ -150,11 +150,17 @@ function nimbus_scripts() {
 
 	wp_enqueue_script('nimbus-app', get_template_directory_uri() . '/build/index.js', ['wp-element', 'wp-api-fetch'], _S_VERSION, true);
 
+	$frontpage = get_page(get_option('page_on_front'));
+
 	wp_localize_script('nimbus-app', 'nimbus_app_data', array(
 		'disciplina' 		=> nimbus_get_plainterms('disciplina'),
 		'territorio'		=> nimbus_get_plainterms('territorio'),
 		'site_name'			=> get_bloginfo( 'name' ),
-		'site_description'	=> get_bloginfo( 'description' )
+		'site_description'	=> get_bloginfo( 'description' ),
+		'frontpage'			=> array(
+								'title' 	=> $frontpage->post_title, 
+								'content'	=> apply_filters('the_content', $frontpage->post_content)
+							)
 	));
 }
 
@@ -176,7 +182,41 @@ function nimbus_get_plainterms($taxonomy) {
 }
 
 function nimbus_get_plainterms_item($itemid, $taxonomy) {
-	return get_the_terms( $itemid, $taxonomy );
+	$terms = get_the_terms( $itemid, $taxonomy );
+	$plainterms = [];
+
+	foreach($terms as $term) {
+		$plainterms[] = $term->name;
+	}
+
+	return $plainterms;
+}
+
+function nimbus_get_plainterms_structured($itemid, $taxonomy) {
+	$termstree = [];
+	$topterms = get_the_terms($itemid, $taxonomy);
+
+	foreach($topterms as $topterm) {
+		if($topterm->parent == 0) {
+			$subtermsarr = [];
+
+			$subterms = get_terms( array( 
+				'taxonomy'	=> $taxonomy,
+				'parent' => $topterm->term_id
+			));
+			
+			foreach($subterms as $subterm) {
+				if(is_object_in_term( $itemid, $taxonomy, $subterm->term_id )) {
+					$subtermsarr[] = $subterm->name;
+				}
+			}
+			$termstree[] = array(
+							'top' => $topterm->name,
+							'subterms' => $subtermsarr
+							);
+		}
+	}
+	return $termstree;
 }
 
 function nimbus_fonts() {

@@ -7,13 +7,53 @@ import {
 	useNavigate,
 	Link,
 } from "react-router-dom";
-import { Helmet } from "react-helmet";
 
-import App from "./App.js";
+import styled from "styled-components";
+import { Helmet } from "react-helmet";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fab } from "@fortawesome/free-brands-svg-icons";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+import {
+	faEnvelope,
+	faPhone,
+	faGlobe,
+	faChevronCircleRight,
+	faChevronCircleLeft,
+	faPlayCircle,
+	faSearch,
+	faWind,
+	faChevronDown,
+	faChevronUp,
+	faTimes,
+} from "@fortawesome/free-solid-svg-icons";
+
+library.add(
+	fab,
+	faEnvelope,
+	faPhone,
+	faGlobe,
+	faChevronCircleRight,
+	faChevronCircleLeft,
+	faPlayCircle,
+	faSearch,
+	faWind,
+	faChevronDown,
+	faChevronUp,
+	faTimes
+);
+
+import Home from "./Home.js";
 import Artists from "./Artists.js";
 import Artist from "./Artist.js";
 import Search from "./Search.js";
 import Series from "./Series.js";
+
+const nimbusTheme = createTheme({
+	typography: {
+		fontFamily: ["Inconsolata", "Bebas Neue", "sans-serif"].join(","),
+	},
+});
 
 const NimbusApp = (props) => {
 	//let navigate = useNavigate();
@@ -21,19 +61,34 @@ const NimbusApp = (props) => {
 	return (
 		<>
 			<Router>
-				<Routes>
-					<Route
-						path="/"
-						element={<App localData={props.localData} />}
-					>
+				<Helmet>
+					<title>
+						{nimbus_app_data.site_name} -{" "}
+						{nimbus_app_data.site_description}
+					</title>
+				</Helmet>
+				<ThemeProvider theme={nimbusTheme}>
+					<header>
+						<Link to="/">Inicio</Link>
+						<Link to="/artistas">Artistas</Link>
+						<Link to="/serie">Series</Link>
+						<Link to="/buscador">Buscador</Link>
+					</header>
+					<Routes>
+						<Route
+							path="/"
+							element={<Home localData={props.localData} />}
+						></Route>
 						<Route
 							path="/artistas"
 							element={
 								<Artists artistfetchurl="/nimbus/v1/artists" />
 							}
-						>
-							<Route path=":artistSlug" element={<Artist />} />
-						</Route>
+						></Route>
+						<Route
+							path="/artistas/:artistSlug"
+							element={<Artist />}
+						/>
 						<Route path="/serie" element={<Series />} />
 
 						<Route path="/disciplina">
@@ -67,8 +122,8 @@ const NimbusApp = (props) => {
 								</main>
 							}
 						/>
-					</Route>
-				</Routes>
+					</Routes>
+				</ThemeProvider>
 			</Router>
 		</>
 	);

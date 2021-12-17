@@ -4,7 +4,6 @@ import TermLink from "./modules/TermLink";
 const TaxView = (props) => {
 	return (
 		<div>
-			<h1>{props.taxonomy}</h1>
 			{props.localData[props.taxonomy].map((term) => (
 				<TermLink
 					to={`/${props.taxonomy}/${term.slug}`}

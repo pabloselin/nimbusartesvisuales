@@ -1,9 +1,40 @@
 import apiFetch from "@wordpress/api-fetch";
-import { useState, useEffect } from "@wordpress/element";
+import { useState, useEffect, forwardRef } from "@wordpress/element";
 import Fuse from "fuse.js";
-
+import TextField from "@mui/material/TextField";
+import InputUnstyled from "@mui/base/InputUnstyled";
+import InputAdornment from "@mui/material/InputAdornment";
+import { Box, styled } from "@mui/system";
 import ArtistsGrid from "./modules/ArtistsGrid";
 import ArtistMini from "./modules/ArtistMini";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const CustomInput = forwardRef(function CustomInput(props, ref) {
+	return (
+		<InputUnstyled
+			components={{ Input: StyledInputTextField }}
+			{...props}
+			ref={ref}
+		/>
+	);
+});
+
+const StyledInputTextField = styled("input")`
+	padding: 12px 12px 12px 36px;
+	min-width: 200px;
+	border-radius: 24px;
+	border: 0;
+	position: relative;
+
+	&:before {
+		content: " ";
+		display: block;
+		width: 24px;
+		height: 24px;
+		background-size: 24px 24px;
+		background-image: url("data:image/svg+xml,%3Csvg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='search' class='svg-inline--fa fa-search fa-w-16' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Cpath fill='currentColor' d='M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z'%3E%3C/path%3E%3C/svg%3E");
+	}
+`;
 
 const Search = (props) => {
 	//Search functionality
@@ -24,6 +55,9 @@ const Search = (props) => {
 			"works.description",
 			"works.caption",
 			"additionalinfo.descinfo",
+			"disciplines.top",
+			"disciplines.subterms",
+			"territories",
 		],
 		threshold: 0.2,
 	};
@@ -48,29 +82,43 @@ const Search = (props) => {
 
 	return (
 		<>
-			<input
-				type="text"
-				placeholder="Buscar Artista"
-				value={searchTerm}
-				onChange={handleChange}
-			/>
-			<h1>Resultados de búsqueda</h1>
-			{searchTerm && (
-				<h2>
-					{searchResults.length} Resultado para: {searchTerm}
-				</h2>
-			)}
+			<Box
+				sx={{
+					p: 6,
+					textAlign: "center",
+					bgcolor: "rgba(51, 51, 153, 0.8)",
+				}}
+			>
+				<CustomInput
+					aria-label="¿Qué estás buscando?"
+					placeholder="¿Qué estás buscando?"
+					value={searchTerm}
+					onChange={handleChange}
+				/>
+			</Box>
 
-			<ArtistsGrid>
-				{searchResults.map((artist) => (
-					<ArtistMini
-						artistname={`${artist.item.name} ${artist.item.lastname} ${artist.item.secondlastname}`}
-						artistlink={`/artistas/${artist.item.slug}`}
-						artistimg={artist.item.works[0].url}
-						key={artist.item.id}
-					/>
-				))}
-			</ArtistsGrid>
+			{searchResults.length > 0 ? (
+				<>
+					<h1>Resultados de búsqueda</h1>
+					<h2>
+						{searchResults.length} Resultado
+						{searchResults.length > 1 && "s"} para: {searchTerm}
+					</h2>
+
+					<ArtistsGrid>
+						{searchResults.map((artist) => (
+							<ArtistMini
+								artistname={`${artist.item.name} ${artist.item.lastname} ${artist.item.secondlastname}`}
+								artistlink={`/artistas/${artist.item.slug}`}
+								artistimg={artist.item.works[0].images.url}
+								key={artist.item.id}
+							/>
+						))}
+					</ArtistsGrid>
+				</>
+			) : (
+				<>{searchTerm.length > 0 && <p>No hay resultados</p>}</>
+			)}
 		</>
 	);
 };

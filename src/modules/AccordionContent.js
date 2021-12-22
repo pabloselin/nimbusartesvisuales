@@ -23,6 +23,9 @@ export default function AccordionContent(props) {
 				<Accordion
 					expanded={expanded === element.id}
 					onChange={handleChange(element.id)}
+					sx={{
+						marginTop: 0,
+					}}
 				>
 					<AccordionSummary
 						sx={{
@@ -52,7 +55,7 @@ export default function AccordionContent(props) {
 							{element.title}
 						</Typography>
 					</AccordionSummary>
-					<AccordionDetails sx={{ bgcolor: "#f0f0f0" }}>
+					<AccordionDetails sx={{ bgcolor: "#f0f0f0", padding: 0 }}>
 						<div>
 							{expanded === element.id && element.component}
 						</div>

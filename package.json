@@ -19,7 +19,6 @@
   "devDependencies": {
     "@wordpress/scripts": "^19.2.2",
     "dir-archiver": "^1.1.1",
-    "node-sass": "^4.14.1",
     "rtlcss": "^2.5.0"
   },
   "rtlcssConfig": {
@@ -61,7 +60,7 @@
     "fuse.js": "^6.4.6",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.1.1",
-    "styled-components": "^5.3.3",
+    "react-youtube": "^7.13.1",
     "swiper": "^7.3.2"
   }
 }

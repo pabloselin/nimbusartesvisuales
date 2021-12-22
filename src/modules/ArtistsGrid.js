@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import { styled } from "@mui/system";
 
-const StyledGrid = styled.div`
+const StyledGrid = styled("div")`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: flex-start;

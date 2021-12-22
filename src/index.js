@@ -8,11 +8,11 @@ import {
 	Link,
 } from "react-router-dom";
 
-import styled from "styled-components";
 import { Helmet } from "react-helmet";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 
 import {
 	faEnvelope,
@@ -43,23 +43,20 @@ library.add(
 	faTimes
 );
 
+import nimbusTheme from "./theming/nimbusTheme";
+import Menu from "./modules/Menu.js";
 import Home from "./Home.js";
 import Artists from "./Artists.js";
 import Artist from "./Artist.js";
 import Search from "./Search.js";
 import Series from "./Series.js";
 
-const nimbusTheme = createTheme({
-	typography: {
-		fontFamily: ["Inconsolata", "Bebas Neue", "sans-serif"].join(","),
-	},
-});
-
 const NimbusApp = (props) => {
 	//let navigate = useNavigate();
 
 	return (
 		<>
+			<CssBaseline />
 			<Router>
 				<Helmet>
 					<title>
@@ -68,12 +65,7 @@ const NimbusApp = (props) => {
 					</title>
 				</Helmet>
 				<ThemeProvider theme={nimbusTheme}>
-					<header>
-						<Link to="/">Inicio</Link>
-						<Link to="/artistas">Artistas</Link>
-						<Link to="/serie">Series</Link>
-						<Link to="/buscador">Buscador</Link>
-					</header>
+					<Menu />
 					<Routes>
 						<Route
 							path="/"

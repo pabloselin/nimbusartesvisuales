@@ -142,12 +142,6 @@ add_action( 'widgets_init', 'nimbus_widgets_init' );
 function nimbus_scripts() {
 	wp_enqueue_style( 'nimbus-style', get_template_directory_uri() . '/build/index.css' , array(), _S_VERSION );
 
-	wp_enqueue_script( 'nimbus-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-
 	wp_enqueue_script('nimbus-app', get_template_directory_uri() . '/build/index.js', ['wp-element', 'wp-api-fetch'], _S_VERSION, true);
 
 	$frontpage = get_page(get_option('page_on_front'));

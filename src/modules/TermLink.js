@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { styled } from "@mui/system";
 
 const StyledLink = styled(Link)`
 	display: inline-block;

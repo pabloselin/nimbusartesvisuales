@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { styled } from "@mui/system";
+import Typography from "@mui/material/Typography";
 
 const StyledLink = styled(Link)`
 	display: block;
 	position: relative;
 	overflow: hidden;
 	margin: 8px 4px;
-	width: 150px;
-	height: 150px;
+	width: 50%;
+	height: 178px;
+	max-width: 178px;
 
 	&:before {
 		content: "";
@@ -23,11 +25,15 @@ const StyledLink = styled(Link)`
 			rgba(108, 108, 108, 0) 100%
 		);
 	}
+
+	img {
+		width: 100%;
+		height: auto;
+	}
 `;
 
-const ArtistTitle = styled.h1`
+const ArtistTitle = styled(Typography)`
 	position: absolute;
-	font-family: "Bebas Neue", sans-serif;
 	font-weight: 400;
 	font-style: normal;
 	top: 24px;
@@ -42,7 +48,7 @@ const ArtistTitle = styled.h1`
 const ArtistMini = (props) => (
 	<StyledLink to={props.artistlink}>
 		<img src={props.artistimg} />
-		<ArtistTitle>{props.artistname}</ArtistTitle>
+		<ArtistTitle variant="h1">{props.artistname}</ArtistTitle>
 	</StyledLink>
 );
 

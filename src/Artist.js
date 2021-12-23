@@ -209,7 +209,7 @@ const Artist = (props) => {
 								>
 									Redes sociales del artista
 								</Typography>
-								<Box sx={{ display: "flex", fontSize: "48px" }}>
+								<Box sx={{ display: "flex", fontSize: "30px" }}>
 									{artist.data.instagram && (
 										<Link
 											underline="always"

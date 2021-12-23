@@ -47,9 +47,10 @@ export default function AccordionContent(props) {
 						<Typography
 							variant="h2"
 							sx={{
-								m: 0,
-								fontSize: 24,
+								margin: "0 12px",
+								fontSize: 20,
 								fontFamily: "Bebas Neue",
+								padding: "",
 							}}
 						>
 							{element.title}

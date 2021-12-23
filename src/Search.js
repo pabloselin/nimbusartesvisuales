@@ -9,6 +9,9 @@ import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import ArtistsGrid from "./modules/ArtistsGrid";
 import ArtistMini from "./modules/ArtistMini";
+import TaxView from "./TaxView";
+import Artists from "./Artists";
+import AccordionContent from "./modules/AccordionContent";
 import FullWidthTitle from "./components/FullWidthTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -89,6 +92,43 @@ const Search = (props) => {
 
 	return (
 		<div theme={theme}>
+			{props.expanded && (
+				<>
+					<FullWidthTitle variant="h1">Buscador</FullWidthTitle>
+					<AccordionContent
+						elements={[
+							{
+								title: "Artistas",
+								component: (
+									<Artists artistfetchurl="/nimbus/v1/artists" />
+								),
+								id: "panel-artistas",
+							},
+							{
+								title: "Disciplinas",
+								component: (
+									<TaxView
+										taxonomy="disciplina"
+										localData={props.localData}
+									/>
+								),
+								id: "panel-disciplinas",
+							},
+							{
+								title: "Territorios",
+								component: (
+									<TaxView
+										taxonomy="territorio"
+										localData={props.localData}
+									/>
+								),
+								id: "panel-territorios",
+							},
+						]}
+					/>
+				</>
+			)}
+
 			<Box
 				sx={{
 					p: 6,

@@ -10,12 +10,24 @@ import ArtistMini from "./modules/ArtistMini";
 import ArtistsGrid from "./modules/ArtistsGrid";
 import Loading from "./components/Loading";
 import FullWidthTitle from "./components/FullWidthTitle";
+import alphabet from "./components/alphabet";
+import { styled } from "@mui/system";
 import TaxView from "./TaxView";
+import LetterSlider from "./modules/LetterSlider";
+
+const LetterHeading = styled(Typography)`
+	text-align: center;
+	font-size: 20px;
+	padding: 6px;
+	border-radius: 20px;
+	background-color: white;
+	margin: 0 0 12px 0;
+`;
 
 const Artists = (props) => {
 	//fetch artists
 	const [content, setContent] = useState([{ artists: null }]);
-
+	const [letter, setLetter] = useState("all");
 	const { termSlug } = useParams();
 
 	const theme = useTheme();
@@ -34,21 +46,24 @@ const Artists = (props) => {
 				});
 			});
 		}
-		console.log("fetching");
+		console.log(termSlug);
 		getContent();
 	}, [termSlug]);
 
 	return (
-		<>
+		<Box sx={{ backgroundColor: theme.palette.background.default }}>
 			{content.artists && content.artists.length ? (
-				<>
-					<FullWidthTitle variant="h1">
-						{content.artists && content.artists.length} Artista
-						{content.artists &&
-							content.artists.length > 1 &&
-							"s"}{" "}
-						{content.termData && content.termData.name}
-					</FullWidthTitle>
+				<div>
+					<div>
+						{!termSlug && (
+							<LetterSlider
+								setLetter={setLetter}
+								activeLetter={letter}
+								artists={content.artists}
+							/>
+						)}
+					</div>
+
 					<Box
 						sx={{
 							backgroundColor: theme.palette.background.default,
@@ -56,34 +71,98 @@ const Artists = (props) => {
 					>
 						<Outlet />
 
-						<ArtistsGrid>
-							{content.artists !== undefined &&
-								content.artists.map((artist) => (
-									<ArtistMini
-										artistname={`${artist.name} ${artist.lastname} ${artist.secondlastname}`}
-										artistlink={`/artistas/${artist.slug}`}
-										artistimg={
-											artist.works.length > 0
-												? artist.works[0].images.url
-												: null
-										}
-										key={artist.id}
+						{content.artists !== undefined && (
+							<div>
+								{!termSlug ? (
+									alphabet.map((idxletter) => (
+										<>
+											{((letter.length > 0 &&
+												letter === idxletter) ||
+												letter === "all") && (
+												<Box sx={{ padding: "12px" }}>
+													<LetterHeading
+														sx={{
+															color: theme.palette
+																.secondary.main,
+															borderColor:
+																theme.palette
+																	.secondary
+																	.main,
+															borderWidth: "1px",
+															borderStyle:
+																"solid",
+														}}
+														variant="h2"
+													>
+														{idxletter}
+													</LetterHeading>
+													<ArtistsGrid>
+														{content.artists
+															.filter((artist) =>
+																artist.lastname
+																	.toUpperCase()
+																	.startsWith(
+																		idxletter
+																	)
+															)
+															.map((artist) => (
+																<ArtistMini
+																	artistname={`${artist.name} ${artist.lastname} ${artist.secondlastname}`}
+																	artistlink={`/artistas/${artist.slug}`}
+																	artistimg={
+																		artist
+																			.works
+																			.length >
+																		0
+																			? artist
+																					.works[0]
+																					.images
+																					.url
+																			: null
+																	}
+																	key={
+																		artist.id
+																	}
+																/>
+															))}
+													</ArtistsGrid>
+												</Box>
+											)}
+										</>
+									))
+								) : (
+									<ArtistsGrid>
+										{content.artists.map((artist) => (
+											<ArtistMini
+												artistname={`${artist.name} ${artist.lastname} ${artist.secondlastname}`}
+												artistlink={`/artistas/${artist.slug}`}
+												artistimg={
+													artist.works.length > 0
+														? artist.works[0].images
+																.url
+														: null
+												}
+												key={artist.id}
+											/>
+										))}
+									</ArtistsGrid>
+								)}
+
+								{props.taxonomy && (
+									<TaxView
+										taxonomy={props.taxonomy}
+										localData={nimbus_app_data}
+										curterm={content.termData}
 									/>
-								))}
-						</ArtistsGrid>
-						{props.taxonomy && (
-							<TaxView
-								taxonomy={props.taxonomy}
-								localData={nimbus_app_data}
-								curterm={content.termData}
-							/>
+								)}
+							</div>
 						)}
 					</Box>
-				</>
+				</div>
 			) : (
 				<Loading />
 			)}
-		</>
+		</Box>
 	);
 };
 

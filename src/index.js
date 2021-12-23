@@ -1,12 +1,6 @@
 import { render, Component, useState, useEffect } from "@wordpress/element";
 import apiFetch from "@wordpress/api-fetch";
-import {
-	BrowserRouter as Router,
-	Route,
-	Routes,
-	useNavigate,
-	Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 
 import { Helmet } from "react-helmet";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -25,6 +19,8 @@ import {
 	faWind,
 	faChevronDown,
 	faChevronUp,
+	faChevronLeft,
+	faChevronRight,
 	faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -40,6 +36,8 @@ library.add(
 	faWind,
 	faChevronDown,
 	faChevronUp,
+	faChevronLeft,
+	faChevronRight,
 	faTimes
 );
 
@@ -50,10 +48,9 @@ import Artists from "./Artists.js";
 import Artist from "./Artist.js";
 import Search from "./Search.js";
 import Series from "./Series.js";
+import Serie from "./Serie.js";
 
 const NimbusApp = (props) => {
-	//let navigate = useNavigate();
-
 	return (
 		<>
 			<CssBaseline />
@@ -69,7 +66,12 @@ const NimbusApp = (props) => {
 					<Routes>
 						<Route
 							path="/"
-							element={<Home localData={props.localData} />}
+							element={
+								<Home
+									showIntro="true"
+									localData={props.localData}
+								/>
+							}
 						></Route>
 						<Route
 							path="/artistas"
@@ -83,6 +85,7 @@ const NimbusApp = (props) => {
 						/>
 						<Route path="/serie" element={<Series />} />
 
+						<Route path="/serie/:videoSlug" element={<Serie />} />
 						<Route path="/disciplina">
 							<Route
 								path=":termSlug"
@@ -105,7 +108,15 @@ const NimbusApp = (props) => {
 								}
 							/>
 						</Route>
-						<Route path="/buscador" element={<Search />} />
+						<Route
+							path="/buscador"
+							element={
+								<Search
+									expanded={true}
+									localData={props.localData}
+								/>
+							}
+						/>
 						<Route
 							path="*"
 							element={

@@ -1,9 +1,9 @@
+import { useEffect, useState } from "@wordpress/element";
 import Box from "@mui/material/Box";
 import { Navigation, EffectFade } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/effect-fade";
 import { styled } from "@mui/system";
 import { useTheme } from "@mui/material/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +13,8 @@ const StyledSlideContent = styled("div")`
 	img {
 		max-height: 50vh;
 		width: auto;
+		max-width: 100%;
+		height: auto;
 	}
 	p {
 		text-align: left;
@@ -60,7 +62,7 @@ const SwiperNavigation = styled("div")`
 
 const WorksSlider = (props) => {
 	const theme = useTheme();
-
+	const [bigImg, setBigImg] = useState({});
 	return (
 		<Box sx={{ position: "relative" }}>
 			<SliderTitle>{props.title}</SliderTitle>

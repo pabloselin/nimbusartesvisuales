@@ -1,7 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 import { styled } from "@mui/system";
 import nimbusLogo from "../imgs/nimbusLogo";
+import nimbusLogoDesktop from "../imgs/nimbusLogoDesktop";
 import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Menu = (props) => {
 	const theme = useTheme();
@@ -9,6 +11,8 @@ const Menu = (props) => {
 	const NimbusNav = styled("nav")(({ theme }) => ({
 		display: "flex",
 		padding: "6px",
+		alignItems: "center",
+		justifyContent: "space-between",
 		borderBottom: `2px solid ${theme.palette.secondary.main}`,
 	}));
 
@@ -21,11 +25,12 @@ const Menu = (props) => {
 	}));
 
 	let location = useLocation();
+	const isMobile = useMediaQuery("(max-width: 768px)");
 
 	return (
 		<NimbusNav>
 			<Link to="/">
-				<img src={nimbusLogo} />
+				<img src={isMobile ? nimbusLogo : nimbusLogoDesktop} />
 			</Link>
 			<StyledLink
 				active={location.pathname === "/artistas"}

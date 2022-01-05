@@ -14,6 +14,10 @@ const FullWidthTitle = (props) => {
 		borderBottomWidth: "2px",
 		borderBottomStyle: "solid",
 		borderBottomColor: theme.palette.primary.main,
+		["@media screen and (min-width: 768px)"]: {
+			borderWidth: "1px",
+			borderStyle: "solid",
+		},
 	}));
 
 	return (

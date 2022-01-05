@@ -10,7 +10,12 @@ const StyledLink = styled(Link)`
 	width: 46%;
 	height: 178px;
 	max-width: 178px;
+	@media screen and (min-width: 769px) {
+		max-width: 356px;
+		height: 356px;
+	}
 
+	,
 	&:before {
 		content: "";
 		position: absolute;

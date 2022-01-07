@@ -5,12 +5,14 @@ import Artists from "./Artists";
 import Search from "./Search";
 import AccordionContent from "./modules/AccordionContent";
 import HTMLContent from "./modules/HTMLContent";
+import SectionTitle from "./components/SectionTitle";
 
 const Home = (props) => {
 	//Home functionality
 
 	return (
 		<>
+			<SectionTitle>{nimbus_app_data.site_name}</SectionTitle>
 			<HTMLContent html={nimbus_app_data.frontpage.content} />
 
 			<AccordionContent

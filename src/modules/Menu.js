@@ -13,7 +13,7 @@ const Menu = (props) => {
 		padding: "6px",
 		alignItems: "center",
 		justifyContent: "space-between",
-		borderBottom: `2px solid ${theme.palette.secondary.main}`,
+		borderBottom: `1px solid ${theme.palette.secondary.main}`,
 	}));
 
 	const StyledLink = styled(Link)(({ theme }) => ({

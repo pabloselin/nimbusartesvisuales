@@ -11,11 +11,15 @@ const FullWidthTitle = (props) => {
 		padding: "12px 24px 12px 24px",
 		backgroundColor: "white",
 		color: theme.palette.primary.main,
-		borderBottomWidth: "2px",
+		borderBottomWidth: props.variant === "h1" ? 0 : "2px",
 		borderBottomStyle: "solid",
 		borderBottomColor: theme.palette.primary.main,
 		["@media screen and (min-width: 768px)"]: {
-			borderWidth: "1px",
+			borderBottomWidth: props.variant === "h1" ? 0 : "1px",
+			borderTopWidth: props.dhb ? 0 : "1px",
+			borderLeftWidth: props.dhb ? 0 : "1px",
+			borderRightWidth: props.dhb ? 0 : "1px",
+			borderBottomWidth: props.dhb ? 0 : "1px",
 			borderStyle: "solid",
 		},
 	}));

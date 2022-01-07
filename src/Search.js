@@ -13,6 +13,7 @@ import TaxView from "./TaxView";
 import Artists from "./Artists";
 import AccordionContent from "./modules/AccordionContent";
 import FullWidthTitle from "./components/FullWidthTitle";
+import SectionTitle from "./components/SectionTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const CustomInput = forwardRef(function CustomInput(props, ref) {
@@ -94,7 +95,7 @@ const Search = (props) => {
 		<div theme={theme}>
 			{props.expanded && (
 				<>
-					<FullWidthTitle variant="h1">Buscador</FullWidthTitle>
+					<SectionTitle>Buscador</SectionTitle>
 					<AccordionContent
 						elements={[
 							{

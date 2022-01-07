@@ -10,6 +10,7 @@ import ArtistMini from "./modules/ArtistMini";
 import ArtistsGrid from "./modules/ArtistsGrid";
 import Loading from "./components/Loading";
 import FullWidthTitle from "./components/FullWidthTitle";
+import SectionTitle from "./components/SectionTitle";
 import alphabet from "./components/alphabet";
 import { styled } from "@mui/system";
 import TaxView from "./TaxView";
@@ -51,16 +52,22 @@ const Artists = (props) => {
 	}, [termSlug]);
 
 	return (
-		<Box sx={{ backgroundColor: theme.palette.background.default }}>
+		<Box sx={{ backgroundColor: theme.palette.background.default, pt: 1 }}>
 			{content.artists && content.artists.length ? (
 				<div>
 					<div>
-						{!termSlug && (
-							<LetterSlider
-								setLetter={setLetter}
-								activeLetter={letter}
-								artists={content.artists}
-							/>
+						{!termSlug ? (
+							<>
+								<LetterSlider
+									setLetter={setLetter}
+									activeLetter={letter}
+									artists={content.artists}
+								/>
+							</>
+						) : (
+							<SectionTitle variant="h3" padded>
+								{content.termData.name}
+							</SectionTitle>
 						)}
 					</div>
 
@@ -123,7 +130,16 @@ const Artists = (props) => {
 																	key={
 																		artist.id
 																	}
-																/>
+																>
+																	{console.log(
+																		artist
+																			.works[0]
+																			.images
+																			.sizes
+																			.medium
+																			.url
+																	)}
+																</ArtistMini>
 															))}
 													</ArtistsGrid>
 												</Box>

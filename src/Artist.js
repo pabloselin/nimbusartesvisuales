@@ -12,6 +12,7 @@ import Grid from "@mui/material/Grid";
 import WorksSlider from "./modules/WorksSlider";
 import NimbusVideo from "./modules/NimbusVideo";
 import FullWidthTitle from "./components/FullWidthTitle";
+import SectionTitle from "./components/SectionTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Loading from "./components/Loading";
 
@@ -21,6 +22,10 @@ const StyledArtist = styled("div")`
 
 const StyledIcon = styled(FontAwesomeIcon)`
 	margin-right: 6px;
+`;
+
+const StyledDiscipline = styled("p")`
+	margin: 0;
 `;
 
 const Artist = (props) => {
@@ -54,13 +59,17 @@ const Artist = (props) => {
 							- {nimbus_app_data.site_name}
 						</title>
 					</Helmet>
-					<h2>Ficha de Artista</h2>
+					<SectionTitle>Ficha de Artista</SectionTitle>
 					<FullWidthTitle variant="h1">
 						{`${artist.data.name} ${artist.data.lastname} ${artist.data.secondlastname}`}
 					</FullWidthTitle>
-					<Grid container columns={{ xs: 1, sm: 6, md: 12 }}>
+					<Grid container columns={{ xs: 12, sm: 12, md: 12 }}>
 						<Grid
-							sx={{ order: isMobile ? 1 : 2 }}
+							sx={{
+								order: isMobile ? 1 : 2,
+								backgroundColor:
+									theme.palette.background.default,
+							}}
 							item
 							xs={12}
 							sm={4}
@@ -68,7 +77,7 @@ const Artist = (props) => {
 						>
 							{artist.data.disciplines && (
 								<>
-									<FullWidthTitle variant="h3">
+									<FullWidthTitle variant="h3" dhb>
 										Disciplinas
 									</FullWidthTitle>
 									<Box
@@ -81,7 +90,7 @@ const Artist = (props) => {
 									>
 										{artist.data.disciplines.map(
 											(discipline) => (
-												<p>
+												<StyledDiscipline>
 													<strong>
 														{discipline.top}
 													</strong>
@@ -95,7 +104,7 @@ const Artist = (props) => {
 																</span>
 															)
 														)}
-												</p>
+												</StyledDiscipline>
 											)
 										)}
 									</Box>
@@ -104,7 +113,7 @@ const Artist = (props) => {
 
 							{artist.data.territories && (
 								<>
-									<FullWidthTitle variant="h3">
+									<FullWidthTitle variant="h3" dhb>
 										Territorio
 									</FullWidthTitle>
 									<Box
@@ -123,6 +132,36 @@ const Artist = (props) => {
 									</Box>
 								</>
 							)}
+							{artist.data.additionalinfo &&
+								artist.data.additionalinfo[0].descinfo.length >
+									0 && (
+									<>
+										<FullWidthTitle variant="h3" dhb>
+											Información Adicional
+										</FullWidthTitle>
+										<Box
+											sx={{
+												padding: "12px 24px 12px 24px",
+												backgroundColor:
+													theme.palette.background
+														.default,
+											}}
+										>
+											{artist.data.additionalinfo.map(
+												(info) => (
+													<div>
+														<a
+															target="_blank"
+															href={info.linkinfo}
+														>
+															{info.descinfo}
+														</a>
+													</div>
+												)
+											)}
+										</Box>
+									</>
+								)}
 						</Grid>
 
 						{artist.data.works.length > 0 && (
@@ -151,33 +190,6 @@ const Artist = (props) => {
 							))}
 						</>
 					)}
-
-					{artist.data.additionalinfo &&
-						artist.data.additionalinfo[0].descinfo.length > 0 && (
-							<>
-								<FullWidthTitle variant="h3">
-									Información Adicional
-								</FullWidthTitle>
-								<Box
-									sx={{
-										padding: "12px 24px 12px 24px",
-										backgroundColor:
-											theme.palette.background.default,
-									}}
-								>
-									{artist.data.additionalinfo.map((info) => (
-										<div>
-											<a
-												target="_blank"
-												href={info.linkinfo}
-											>
-												{info.descinfo}
-											</a>
-										</div>
-									))}
-								</Box>
-							</>
-						)}
 
 					<Grid
 						container

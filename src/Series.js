@@ -1,5 +1,6 @@
 import apiFetch from "@wordpress/api-fetch";
 import FullWidthTitle from "./components/FullWidthTitle";
+import SectionTitle from "./components/SectionTitle";
 import { useState, useEffect } from "@wordpress/element";
 import Typography from "@mui/material/Typography";
 import { Link as RouterLink, useParams } from "react-router-dom";
@@ -41,9 +42,7 @@ const Series = (props) => {
 		<>
 			{content.videos && content.videos.length ? (
 				<>
-					<FullWidthTitle variant="h1">
-						Serie documental
-					</FullWidthTitle>
+					<SectionTitle>Serie documental</SectionTitle>
 					{content.videos.map((video) => (
 						<>
 							<FullWidthTitle variant="h2">

@@ -49,20 +49,20 @@ const Artist = (props) => {
 		}
 	}, [artistSlug]);
 
+	const artistName =
+		artist.data !== undefined
+			? `${artist.data.name} ${artist.data.lastname} ${artist.data.secondlastname}`
+			: "";
+
 	return (
 		<>
 			{artist.data !== undefined ? (
 				<StyledArtist>
 					<Helmet>
-						<title>
-							{`${artist.data.name} ${artist.data.lastname} ${artist.data.secondlastname}`}{" "}
-							- {nimbus_app_data.site_name}
-						</title>
+						<title> - {nimbus_app_data.site_name}</title>
 					</Helmet>
 					<SectionTitle>Ficha de Artista</SectionTitle>
-					<FullWidthTitle variant="h1">
-						{`${artist.data.name} ${artist.data.lastname} ${artist.data.secondlastname}`}
-					</FullWidthTitle>
+					<FullWidthTitle variant="h1">{artistName}</FullWidthTitle>
 					<Grid container columns={{ xs: 12, sm: 12, md: 12 }}>
 						<Grid
 							sx={{
@@ -173,6 +173,8 @@ const Artist = (props) => {
 								sm={8}
 							>
 								<WorksSlider
+									artist={artistName}
+									artistSlug={artist.data.slug}
 									title="Muestra de Obras"
 									works={artist.data.works}
 								/>

@@ -11,10 +11,12 @@ const nimbusTheme = createTheme({
     secondary: {
       main: "#333399",
       light: "rgba(51,51,153,0.6)",
+      lighter: "#FACCDE",
     },
     background: {
       default: "#f0f0f0",
       dark: "#29297A",
+      darker: "#14143D",
     },
     text: {
       primary: "#282828",
@@ -37,6 +39,15 @@ const nimbusTheme = createTheme({
   },
   shape: {
     borderRadius: 30,
+  },
+  components: {
+    MuiDialog: {
+      styleOverrides: {
+        root: {
+          borderRadius: 0,
+        },
+      },
+    },
   },
 });
 

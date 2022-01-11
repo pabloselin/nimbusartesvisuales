@@ -2,11 +2,15 @@ import { useEffect, useState } from "@wordpress/element";
 import Box from "@mui/material/Box";
 import { Navigation, EffectFade } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+
 import "swiper/css";
 import "swiper/css/navigation";
 import { styled } from "@mui/system";
 import { useTheme } from "@mui/material/styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import BigImgDialog from "./BigImgDialog";
+import FichaObra from "./FichaObra";
 
 const StyledSlideContent = styled("div")`
 	text-align: center;
@@ -63,6 +67,10 @@ const SwiperNavigation = styled("div")`
 const WorksSlider = (props) => {
 	const theme = useTheme();
 	const [bigImg, setBigImg] = useState({});
+	const handleClose = () => {
+		setBigImg({});
+	};
+
 	return (
 		<Box sx={{ position: "relative" }}>
 			<SliderTitle>{props.title}</SliderTitle>
@@ -82,6 +90,7 @@ const WorksSlider = (props) => {
 							<StyledSlideContent>
 								<ImageContainer>
 									<img
+										onClick={() => setBigImg(work)}
 										src={
 											work.images.sizes.large
 												? work.images.sizes.large.url
@@ -89,32 +98,7 @@ const WorksSlider = (props) => {
 										}
 									/>
 								</ImageContainer>
-								<Box
-									sx={{
-										padding: "12px 24px 12px 24px",
-										textAlign: "left",
-										backgroundColor:
-											theme.palette.background.default,
-									}}
-								>
-									<strong>{work.images.title}</strong>
-									<br />
-									{work.technique && (
-										<>Técnica: {work.technique}</>
-									)}
-									{work.medidas && (
-										<>
-											<br />
-											Medidas: {work.measures}
-										</>
-									)}
-									{work.year && (
-										<>
-											<br />
-											Año: {work.year}
-										</>
-									)}
-								</Box>
+								<FichaObra work={work} theme={theme} />
 							</StyledSlideContent>
 						</SwiperSlide>
 					))}
@@ -128,6 +112,15 @@ const WorksSlider = (props) => {
 						icon="chevron-circle-left"
 					/>
 				</SwiperNavigation>
+				{bigImg.images && (
+					<BigImgDialog
+						artist={props.artist}
+						slug={props.artistSlug}
+						handleClose={handleClose}
+						work={bigImg}
+						theme={theme}
+					/>
+				)}
 			</Swiper>
 		</Box>
 	);

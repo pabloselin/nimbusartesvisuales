@@ -23,6 +23,7 @@ import {
 	faChevronLeft,
 	faChevronRight,
 	faTimes,
+	faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -39,7 +40,8 @@ library.add(
 	faChevronUp,
 	faChevronLeft,
 	faChevronRight,
-	faTimes
+	faTimes,
+	faTimesCircle
 );
 
 import nimbusTheme from "./theming/nimbusTheme";

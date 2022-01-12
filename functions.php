@@ -155,11 +155,27 @@ function nimbus_scripts() {
 		'frontpage'			=> array(
 								'title' 	=> $frontpage->post_title, 
 								'content'	=> apply_filters('the_content', $frontpage->post_content)
-							)
+							),
+		'menu'				=> nimbus_menu_items('principal')
 	));
 }
 
 add_action( 'wp_enqueue_scripts', 'nimbus_scripts' );
+
+function nimbus_register_menu() {
+	register_nav_menu( 'principal', 'Menú principal' );
+}
+
+function nimbus_menu_items($location) {
+	$locations = get_nav_menu_locations();
+	$menu = wp_get_nav_menu_object( $locations[$location] );
+	$menuitems = wp_get_nav_menu_items($menu->term_id);
+
+	return $menuitems;
+}
+
+add_action('after_setup_theme', 'nimbus_register_menu', 0);
+
 
 function nimbus_get_plainterms($taxonomy) {
 	$terms = get_terms(

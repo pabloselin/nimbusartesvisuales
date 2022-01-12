@@ -47,13 +47,14 @@ library.add(
 );
 
 import nimbusTheme from "./theming/nimbusTheme";
-import NimbusMenu from "./modules/NimbusMenu.js";
-import Home from "./Home.js";
-import Artists from "./Artists.js";
-import Artist from "./Artist.js";
-import Search from "./Search.js";
-import Series from "./Series.js";
-import Serie from "./Serie.js";
+import NimbusMenu from "./modules/NimbusMenu";
+import Home from "./Home";
+import Artists from "./Artists";
+import Artist from "./Artist";
+import Search from "./Search";
+import Series from "./Series";
+import Serie from "./Serie";
+import SobreNimbus from "./SobreNimbus";
 
 const NimbusApp = (props) => {
 	return (
@@ -125,6 +126,10 @@ const NimbusApp = (props) => {
 										localData={props.localData}
 									/>
 								}
+							/>
+							<Route
+								path="/sobre-nimbus"
+								element={<SobreNimbus />}
 							/>
 							<Route
 								path="*"

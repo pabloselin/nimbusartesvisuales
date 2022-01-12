@@ -30,6 +30,10 @@ const StyledDialog = styled(Dialog)(({ theme }) => ({
 	},
 }));
 
+const StyledLink = styled(Link)`
+	color: white;
+`;
+
 const BigImgDialog = (props) => {
 	const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -75,14 +79,18 @@ const BigImgDialog = (props) => {
 				>
 					<Typography
 						variant="h2"
-						sx={{ fontSize: "28px", textDecoration: "underline" }}
+						sx={{
+							fontSize: "28px",
+							textDecoration: "underline",
+							color: "white",
+						}}
 					>
-						{props.slug ? (
-							<Link to={`/artistas/${props.slug}`}>
-								{props.artist}{" "}
-							</Link>
+						{props.work.slug ? (
+							<StyledLink to={`/artistas/${props.work.slug}`}>
+								{props.work.artist}{" "}
+							</StyledLink>
 						) : (
-							<>{props.artist} </>
+							<>{props.work.artist} </>
 						)}
 					</Typography>
 				</Box>

@@ -24,6 +24,7 @@ import {
 	faChevronRight,
 	faTimes,
 	faTimesCircle,
+	faEye,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -41,11 +42,12 @@ library.add(
 	faChevronLeft,
 	faChevronRight,
 	faTimes,
-	faTimesCircle
+	faTimesCircle,
+	faEye
 );
 
 import nimbusTheme from "./theming/nimbusTheme";
-import Menu from "./modules/Menu.js";
+import NimbusMenu from "./modules/NimbusMenu.js";
 import Home from "./Home.js";
 import Artists from "./Artists.js";
 import Artist from "./Artist.js";
@@ -66,7 +68,7 @@ const NimbusApp = (props) => {
 						</title>
 					</Helmet>
 					<ThemeProvider theme={nimbusTheme}>
-						<Menu />
+						<NimbusMenu />
 						<Routes>
 							<Route
 								path="/"

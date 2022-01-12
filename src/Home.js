@@ -6,6 +6,7 @@ import Search from "./Search";
 import AccordionContent from "./modules/AccordionContent";
 import HTMLContent from "./modules/HTMLContent";
 import SectionTitle from "./components/SectionTitle";
+import WorksSlider from "./modules/WorksSlider";
 
 const Home = (props) => {
 	//Home functionality
@@ -13,6 +14,7 @@ const Home = (props) => {
 	return (
 		<>
 			<SectionTitle>{nimbus_app_data.site_name}</SectionTitle>
+			<WorksSlider front works={nimbus_app_data.artistslider} />
 			<HTMLContent html={nimbus_app_data.frontpage.content} />
 
 			<AccordionContent

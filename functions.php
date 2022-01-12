@@ -150,6 +150,7 @@ function nimbus_scripts() {
 		'disciplina' 		=> nimbus_get_plainterms('disciplina'),
 		'territorio'		=> nimbus_get_plainterms('territorio'),
 		'site_name'			=> get_bloginfo( 'name' ),
+		'artistslider'		=> nimbus_artistslider(),
 		'site_description'	=> get_bloginfo( 'description' ),
 		'frontpage'			=> array(
 								'title' 	=> $frontpage->post_title, 

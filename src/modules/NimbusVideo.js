@@ -30,7 +30,7 @@ const StyledThumb = styled("img")`
 
 const getVideoImg = (videoId) => {
 	if (videoId) {
-		return `https://img.youtube.com/vi/${videoId}/0.jpg`;
+		return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 	}
 };
 

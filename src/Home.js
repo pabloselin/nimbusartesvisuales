@@ -13,7 +13,7 @@ const Home = (props) => {
 
 	return (
 		<>
-			<SectionTitle>{nimbus_app_data.site_name}</SectionTitle>
+			<SectionTitle>{nimbus_app_data.site_description}</SectionTitle>
 			<WorksSlider front works={nimbus_app_data.artistslider} />
 			<HTMLContent html={nimbus_app_data.frontpage.content} />
 

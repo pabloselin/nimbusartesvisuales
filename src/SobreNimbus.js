@@ -36,7 +36,11 @@ const SobreNimbus = (props) => {
 						dangerouslySetInnerHTML={{
 							__html: content.data.content.rendered,
 						}}
-						sx={{ backgroundColor: "#f0f0f0", p: 2 }}
+						sx={{
+							backgroundColor: "#f0f0f0",
+							p: 2,
+							fontFamily: "Inconsolata, sans-serif",
+						}}
 					/>
 				</Grid>
 			)}

@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { Link as RouterLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const VideoWrapper = styled("div")`
 	position: relative;
@@ -20,34 +21,60 @@ const StyledYouTube = styled(YouTube)`
 	height: 100%;
 `;
 
-const StyledThumb = styled("img")`
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-`;
-
 const getVideoImg = (videoId) => {
 	if (videoId) {
-		return `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+		return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
 	}
 };
 
 const NimbusVideo = (props) => {
 	const theme = useTheme();
 
+	const StyledThumb = styled("div")`
+		position: relative;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+
+		svg {
+			position: absolute;
+			color: white;
+			font-size: 120px;
+			transition: all ease-in 0.5s;
+		}
+
+		&:hover {
+			svg {
+				color: ${theme.palette.primary.main};
+			}
+		}
+	`;
+
 	return (
 		<>
-			<VideoWrapper>
-				{props.expanded ? (
+			{props.expanded ? (
+				<VideoWrapper>
 					<StyledYouTube videoId={props.video.video_id} />
-				) : (
-					<RouterLink to={`/serie/${props.video.slug}`}>
-						<StyledThumb src={getVideoImg(props.video.video_id)} />
-					</RouterLink>
-				)}
-			</VideoWrapper>
+				</VideoWrapper>
+			) : (
+				<RouterLink to={`/serie/${props.video.slug}`}>
+					<StyledThumb theme={theme}>
+						<FontAwesomeIcon
+							icon={["fas", "play-circle"]}
+							size="xl"
+						/>
+						<img src={getVideoImg(props.video.video_id)} />
+					</StyledThumb>
+				</RouterLink>
+			)}
+
 			{props.expanded && (
 				<Box
 					sx={{

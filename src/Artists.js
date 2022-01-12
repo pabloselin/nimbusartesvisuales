@@ -15,6 +15,7 @@ import alphabet from "./components/alphabet";
 import { styled } from "@mui/system";
 import TaxView from "./TaxView";
 import LetterSlider from "./modules/LetterSlider";
+import checkEmptyLetters from "./components/checkEmptyLetters";
 
 const LetterHeading = styled(Typography)`
 	text-align: center;
@@ -28,6 +29,7 @@ const LetterHeading = styled(Typography)`
 const Artists = (props) => {
 	//fetch artists
 	const [content, setContent] = useState([{ artists: null }]);
+	const [empties, setEmpties] = useState([{ empties: null }]);
 	const [letter, setLetter] = useState("all");
 	const { termSlug } = useParams();
 
@@ -49,7 +51,14 @@ const Artists = (props) => {
 		}
 		console.log(termSlug);
 		getContent();
+		//setEmpties({ empties: checkEmptyLetters(content.artists) });
 	}, [termSlug]);
+
+	useEffect(() => {
+		if (content) {
+			setEmpties({ empties: checkEmptyLetters(content.artists) });
+		}
+	}, [content]);
 
 	return (
 		<Box sx={{ backgroundColor: theme.palette.background.default, pt: 1 }}>
@@ -87,22 +96,43 @@ const Artists = (props) => {
 												letter === idxletter) ||
 												letter === "all") && (
 												<Box sx={{ padding: "12px" }}>
-													<LetterHeading
-														sx={{
-															color: theme.palette
-																.secondary.main,
-															borderColor:
-																theme.palette
+													{console.log(
+														empties.empties
+													)}
+													{empties.empties !==
+														undefined &&
+													empties.empties.indexOf(
+														idxletter
+													) == -1 ? (
+														<LetterHeading
+															sx={{
+																color: theme
+																	.palette
 																	.secondary
 																	.main,
-															borderWidth: "1px",
-															borderStyle:
-																"solid",
-														}}
-														variant="h2"
-													>
-														{idxletter}
-													</LetterHeading>
+																borderColor:
+																	theme
+																		.palette
+																		.secondary
+																		.main,
+																borderWidth:
+																	"1px",
+																borderStyle:
+																	"solid",
+															}}
+															variant="h2"
+														>
+															{idxletter}
+															{console.log(
+																empties.empties.indexOf(
+																	idxletter
+																)
+															)}
+														</LetterHeading>
+													) : (
+														<p />
+													)}
+
 													<ArtistsGrid>
 														{content.artists
 															.filter((artist) =>
@@ -117,29 +147,19 @@ const Artists = (props) => {
 																	artistname={`${artist.name} ${artist.lastname} ${artist.secondlastname}`}
 																	artistlink={`/artistas/${artist.slug}`}
 																	artistimg={
-																		artist
-																			.works
-																			.length >
-																		0
+																		artist.works
 																			? artist
 																					.works[0]
 																					.images
+																					.sizes
+																					.thumbnail
 																					.url
 																			: null
 																	}
 																	key={
 																		artist.id
 																	}
-																>
-																	{console.log(
-																		artist
-																			.works[0]
-																			.images
-																			.sizes
-																			.medium
-																			.url
-																	)}
-																</ArtistMini>
+																></ArtistMini>
 															))}
 													</ArtistsGrid>
 												</Box>

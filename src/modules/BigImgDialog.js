@@ -65,7 +65,13 @@ const BigImgDialog = (props) => {
 						textAlign: "center",
 					}}
 				>
-					<img src={props.work.images.sizes.large.url} />
+					<img
+						src={
+							props.work.images.sizes.large
+								? props.work.images.sizes.large.url
+								: props.works.images.full_url
+						}
+					/>
 				</Box>
 				<Box
 					sx={{

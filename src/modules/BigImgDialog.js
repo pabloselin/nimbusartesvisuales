@@ -34,6 +34,12 @@ const StyledLink = styled(Link)`
 	color: white;
 `;
 
+const StyledDialogTitle = styled(DialogTitle)`
+	position: absolute;
+	top: 0;
+	right: 0;
+`;
+
 const BigImgDialog = (props) => {
 	const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -44,7 +50,7 @@ const BigImgDialog = (props) => {
 			open={true}
 			onClose={props.handleClose}
 		>
-			<DialogTitle
+			<StyledDialogTitle
 				sx={{
 					textAlign: "right",
 				}}
@@ -54,7 +60,7 @@ const BigImgDialog = (props) => {
 					icon={["fas", "times-circle"]}
 					size={"lg"}
 				/>
-			</DialogTitle>
+			</StyledDialogTitle>
 			<DialogContent
 				sx={{
 					padding: 0,
@@ -63,13 +69,14 @@ const BigImgDialog = (props) => {
 				<Box
 					sx={{
 						textAlign: "center",
+						p: 2,
 					}}
 				>
 					<img
 						src={
-							props.work.images.sizes.large
+							props.work.images.sizes.large !== undefined
 								? props.work.images.sizes.large.url
-								: props.works.images.full_url
+								: props.work.images.full_url
 						}
 					/>
 				</Box>

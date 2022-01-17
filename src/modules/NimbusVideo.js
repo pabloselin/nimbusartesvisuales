@@ -80,8 +80,10 @@ const NimbusVideo = (props) => {
 							videoid={props.video.video_id}
 						/>
 					) : (
-						<RouterLink to={`/serie/${props.video.slug}`}>
-							<NimbusThumb />
+						<RouterLink
+							to={`/serie-documental-nimbus/${props.video.slug}`}
+						>
+							<NimbusThumb videoid={props.video.video_id} />
 						</RouterLink>
 					)}
 				</>

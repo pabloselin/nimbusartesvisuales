@@ -149,14 +149,14 @@ const Artist = (props) => {
 										>
 											{artist.data.additionalinfo.map(
 												(info) => (
-													<div>
+													<Typography sx={{ pb: 2 }}>
 														<a
 															target="_blank"
 															href={info.linkinfo}
 														>
 															{info.descinfo}
 														</a>
-													</div>
+													</Typography>
 												)
 											)}
 										</Box>

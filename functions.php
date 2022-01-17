@@ -156,7 +156,8 @@ function nimbus_scripts() {
 								'title' 	=> $frontpage->post_title, 
 								'content'	=> apply_filters('the_content', $frontpage->post_content)
 							),
-		'menu'				=> nimbus_menu_items('principal')
+		'menu'				=> nimbus_menu_items('principal'),
+		'pages'				=> nimbus_get_pages_data()
 	));
 }
 
@@ -164,6 +165,38 @@ add_action( 'wp_enqueue_scripts', 'nimbus_scripts' );
 
 function nimbus_register_menu() {
 	register_nav_menu( 'principal', 'Menú principal' );
+}
+
+function nimbus_get_pages_data() {
+	$args = array(
+		'post_type' 	=> 'page',
+		'numberposts'	=> -1
+	);
+
+	$pages = get_posts($args);
+	$pages_data = [];
+
+	foreach($pages as $page) {
+		
+		$fields = ['nimbus_url_video', 'nimbus_duracion', 'nimbus_subtitulos'];
+
+		$fields_data = [];
+
+		foreach($fields as $field) {
+			if(get_post_meta($page->ID, $field, true)) {
+				$fields_data[$field] = 	get_post_meta($page->ID, $field, true);
+			}	 
+		}
+
+
+		$pages_data[str_replace('-', '_', $page->post_name)] = array(
+			'title'		=> $page->post_title,
+			'fields'	=> $fields_data,
+			'content'	=> apply_filters('the_content', $page->post_content)
+		);
+	}
+
+	return $pages_data;
 }
 
 function nimbus_menu_items($location) {

@@ -8,6 +8,8 @@ import { useTheme } from "@mui/material/styles";
 import { styled } from "@mui/system";
 import Loading from "./components/Loading";
 import NimbusVideo from "./modules/NimbusVideo";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
 const Series = (props) => {
 	//fetch series
@@ -19,8 +21,6 @@ const Series = (props) => {
 		videoSlug !== undefined
 			? "nimbus/v1/videosingle/?slug=" + videoSlug
 			: "nimbus/v1/videos";
-
-	console.log(fetchroute);
 
 	const StyledRouterLink = styled(RouterLink)(({ theme }) => ({
 		textDecoration: "none",
@@ -42,7 +42,23 @@ const Series = (props) => {
 		<>
 			{content.videos && content.videos.length ? (
 				<>
-					<SectionTitle>Serie documental</SectionTitle>
+					{nimbus_app_data.pages.serie_documental_nimbus && (
+						<>
+							<SectionTitle>
+								{
+									nimbus_app_data.pages
+										.serie_documental_nimbus.title
+								}
+							</SectionTitle>
+							<Box
+								dangerouslySetInnerHTML={{
+									__html: nimbus_app_data.pages
+										.serie_documental_nimbus.content,
+								}}
+							/>
+						</>
+					)}
+
 					{content.videos.map((video) => (
 						<>
 							<FullWidthTitle variant="h2">
@@ -51,7 +67,29 @@ const Series = (props) => {
 									{video.name}
 								</StyledRouterLink>
 							</FullWidthTitle>
-							<NimbusVideo video={video} />
+							<Grid container columns={{ md: 12 }}>
+								<Grid item md={6}>
+									<NimbusVideo video={video} />
+								</Grid>
+								<Grid
+									item
+									md={6}
+									sx={{ backgroundColor: "#f0f0f0" }}
+								>
+									<Box>
+										<p>{video.duracion}</p>
+										<p>{video.subtitulos}</p>
+									</Box>
+									<Box
+										sx={{
+											p: 2,
+										}}
+										dangerouslySetInnerHTML={{
+											__html: video.chapter_content,
+										}}
+									/>
+								</Grid>
+							</Grid>
 						</>
 					))}
 				</>

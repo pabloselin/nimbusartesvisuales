@@ -70,11 +70,11 @@ const NimbusMenu = (props) => {
 			<StyledLink
 				sx={{
 					color:
-						location.pathname === "/serie"
+						location.pathname === "/serie-documental-nimbus"
 							? theme.palette.primary.main
 							: theme.palette.secondary.main,
 				}}
-				to="/serie"
+				to="/serie-documental-nimbus"
 			>
 				Serie Documental
 			</StyledLink>

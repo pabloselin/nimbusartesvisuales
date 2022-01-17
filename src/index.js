@@ -90,10 +90,13 @@ const NimbusApp = (props) => {
 								path="/artistas/:artistSlug"
 								element={<Artist />}
 							/>
-							<Route path="/serie" element={<Series />} />
+							<Route
+								path="/serie-documental-nimbus"
+								element={<Series />}
+							/>
 
 							<Route
-								path="/serie/:videoSlug"
+								path="/serie-documental-nimbus/:videoSlug"
 								element={<Serie />}
 							/>
 							<Route path="/disciplina">

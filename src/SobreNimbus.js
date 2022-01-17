@@ -5,11 +5,71 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "@wordpress/element";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import FullWidthTitle from "./components/FullWidthTitle";
+import SectionTitle from "./components/SectionTitle";
+import nimbusInstagramIcon from "./imgs/instagram.svg";
+import nimbusMailIcon from "./imgs/mail.svg";
+import nimbusWebIcon from "./imgs/web.svg";
+import nimbusYoutubeIcon from "./imgs/youtube.svg";
+
+const StyledBox = styled(Box)`
+	h2 {
+		fontsize: 20px;
+		padding: 12px 24px 12px 24px;
+		margin: 24px -16px;
+		background-color: white;
+		color: #e6005c;
+		border-bottom: 1px solid #e6005c;
+		@media screen and (min-width: 768px) {
+			border-top: 1px solid #e6005c;
+			border-left: 1px solid #e6005c;
+			border-right: 1px solid #e6005c;
+		}
+	}
+
+	h2 {
+		font-family: "Bebas Neue", sans-serif;
+		text-transform: uppercase;
+		font-weight: 400;
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	p.nimbus-phone,
+	p.nimbus-mail,
+	p.nimbus-instagram,
+	p.nimbus-web {
+		padding-left: 36px;
+		background-position: center left;
+		background-repeat: no-repeat;
+	}
+
+	p.nimbus-mail {
+		background-image: url(${nimbusMailIcon});
+	}
+
+	p.nimbus-phone {
+		background-image: url(${nimbusMailIcon});
+	}
+
+	p.nimbus-instagram {
+		background-image: url(${nimbusInstagramIcon});
+	}
+
+	p.nimbus-web {
+		background-image: url(${nimbusMailIcon});
+	}
+`;
 
 const SobreNimbus = (props) => {
 	const [content, setContent] = useState({});
+
+	const isMobile = useMediaQuery("(max-width: 768px)");
 
 	useEffect(() => {
 		async function getContent(artistSlug) {
@@ -29,10 +89,17 @@ const SobreNimbus = (props) => {
 		<Grid container columns={{ xs: 12, sm: 12 }}>
 			{content.data && (
 				<Grid xs="12">
-					<FullWidthTitle>
-						{content.data.title.rendered}
-					</FullWidthTitle>
-					<Box
+					{isMobile ? (
+						<FullWidthTitle variant="h1">
+							{content.data.title.rendered}
+						</FullWidthTitle>
+					) : (
+						<SectionTitle variant="h1">
+							{content.data.title.rendered}
+						</SectionTitle>
+					)}
+
+					<StyledBox
 						dangerouslySetInnerHTML={{
 							__html: content.data.content.rendered,
 						}}

@@ -192,7 +192,8 @@ function nimbus_get_pages_data() {
 		$pages_data[str_replace('-', '_', $page->post_name)] = array(
 			'title'		=> $page->post_title,
 			'fields'	=> $fields_data,
-			'content'	=> apply_filters('the_content', $page->post_content)
+			'content'	=> apply_filters('the_content', $page->post_content),
+			'video_id'	=> youtube_id_from_url(urldecode(rawurldecode(get_post_meta($page->ID, 'nimbusurl_video', true)))),
 		);
 	}
 

@@ -2,6 +2,7 @@ import YouTube from "react-youtube";
 import { styled } from "@mui/system";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
+import { useState, useEffect } from "@wordpress/element";
 import Box from "@mui/material/Box";
 import { Link as RouterLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,6 +30,7 @@ const getVideoImg = (videoId) => {
 
 const NimbusVideo = (props) => {
 	const theme = useTheme();
+	const [activeVideo, setActiveVideo] = useState(false);
 
 	const StyledThumb = styled("div")`
 		position: relative;
@@ -57,22 +59,32 @@ const NimbusVideo = (props) => {
 		}
 	`;
 
+	const NimbusThumb = (props) => (
+		<StyledThumb theme={theme} onClick={props.onClick}>
+			<FontAwesomeIcon icon={["fas", "play-circle"]} size="xl" />
+			<img src={getVideoImg(props.videoid)} />
+		</StyledThumb>
+	);
+
 	return (
 		<>
-			{props.expanded ? (
+			{props.expanded || activeVideo ? (
 				<VideoWrapper>
 					<StyledYouTube videoId={props.video.video_id} />
 				</VideoWrapper>
 			) : (
-				<RouterLink to={`/serie/${props.video.slug}`}>
-					<StyledThumb theme={theme}>
-						<FontAwesomeIcon
-							icon={["fas", "play-circle"]}
-							size="xl"
+				<>
+					{props.togglable ? (
+						<NimbusThumb
+							onClick={() => setActiveVideo(true)}
+							videoid={props.video.video_id}
 						/>
-						<img src={getVideoImg(props.video.video_id)} />
-					</StyledThumb>
-				</RouterLink>
+					) : (
+						<RouterLink to={`/serie/${props.video.slug}`}>
+							<NimbusThumb />
+						</RouterLink>
+					)}
+				</>
 			)}
 
 			{props.expanded && (

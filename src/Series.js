@@ -44,30 +44,53 @@ const Series = (props) => {
 				<>
 					{nimbus_app_data.pages.serie_documental_nimbus && (
 						<>
-							<SectionTitle>
+							<SectionTitle sx={{ p: 0 }}>
 								{
 									nimbus_app_data.pages
 										.serie_documental_nimbus.title
 								}
 							</SectionTitle>
-							<Box
-								dangerouslySetInnerHTML={{
-									__html: nimbus_app_data.pages
-										.serie_documental_nimbus.content,
-								}}
-							/>
+							<Box sx={{ mb: 2 }}>
+								<Grid container columns={{ md: 12 }}>
+									<Grid item md={6}>
+										<NimbusVideo
+											togglable
+											video={{
+												slug: "none",
+												video_id:
+													nimbus_app_data.pages
+														.serie_documental_nimbus
+														.video_id,
+											}}
+										/>
+									</Grid>
+									<Grid item md={6}>
+										<Typography
+											sx={{ p: 2 }}
+											variant="body1"
+											dangerouslySetInnerHTML={{
+												__html: nimbus_app_data.pages
+													.serie_documental_nimbus
+													.content,
+											}}
+										/>
+									</Grid>
+								</Grid>
+							</Box>
 						</>
 					)}
 
 					{content.videos.map((video) => (
-						<>
+						<Box sx={{ mb: 4 }}>
 							<FullWidthTitle variant="h2">
-								<StyledRouterLink to={`/serie/${video.slug}`}>
+								<StyledRouterLink
+									to={`/serie-documental-nimbus/${video.slug}`}
+								>
 									Capítulo {video.chapter_number}:{" "}
 									{video.name}
 								</StyledRouterLink>
 							</FullWidthTitle>
-							<Grid container columns={{ md: 12 }}>
+							<Grid theme={theme} container columns={{ md: 12 }}>
 								<Grid item md={6}>
 									<NimbusVideo video={video} />
 								</Grid>
@@ -76,21 +99,35 @@ const Series = (props) => {
 									md={6}
 									sx={{ backgroundColor: "#f0f0f0" }}
 								>
-									<Box>
-										<p>{video.duracion}</p>
-										<p>{video.subtitulos}</p>
+									<Box theme={theme} sx={{ p: 2 }}>
+										<Typography sx={{ fontWeight: "bold" }}>
+											{video.duracion}
+										</Typography>
+										<Typography sx={{ fontWeight: "bold" }}>
+											{video.subtitulos}
+										</Typography>
+										<Typography sx={{ fontWeight: "bold" }}>
+											{video.audio}
+										</Typography>
 									</Box>
 									<Box
 										sx={{
-											p: 2,
+											pt: 0,
+											pb: 2,
+											pl: 2,
+											pr: 2,
 										}}
-										dangerouslySetInnerHTML={{
-											__html: video.chapter_content,
-										}}
-									/>
+									>
+										<Typography
+											variant="body1"
+											dangerouslySetInnerHTML={{
+												__html: video.chapter_content,
+											}}
+										/>
+									</Box>
 								</Grid>
 							</Grid>
-						</>
+						</Box>
 					))}
 				</>
 			) : (

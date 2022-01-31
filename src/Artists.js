@@ -10,11 +10,11 @@ import ArtistMini from "./modules/ArtistMini";
 import ArtistsGrid from "./modules/ArtistsGrid";
 import Loading from "./components/Loading";
 import FullWidthTitle from "./components/FullWidthTitle";
-import SectionTitle from "./components/SectionTitle";
 import alphabet from "./components/alphabet";
 import { styled } from "@mui/system";
 import TaxView from "./TaxView";
 import LetterSlider from "./modules/LetterSlider";
+import SectionTitle from "./components/SectionTitle";
 import checkEmptyLetters from "./components/checkEmptyLetters";
 
 const LetterHeading = styled(Typography)`
@@ -62,6 +62,7 @@ const Artists = (props) => {
 
 	return (
 		<Box sx={{ backgroundColor: theme.palette.background.default, pt: 1 }}>
+			{!props.front && <SectionTitle>Artistas</SectionTitle>}
 			{content.artists && content.artists.length ? (
 				<div>
 					<div>

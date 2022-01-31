@@ -185,7 +185,7 @@ const Artist = (props) => {
 					{artist.data.videos && (
 						<>
 							<FullWidthTitle variant="h3">
-								Entrevista a la autora
+								Entrevista al artista
 							</FullWidthTitle>
 							{artist.data.videos.map((video) => (
 								<NimbusVideo video={video} />

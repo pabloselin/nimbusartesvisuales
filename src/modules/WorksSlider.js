@@ -130,7 +130,7 @@ const WorksSlider = (props) => {
 		<Box sx={{ position: "relative" }}>
 			<SliderTitle>{props.title}</SliderTitle>
 			<Swiper
-				slidesPerView={props.front && !isMobile ? 2 : 1}
+				slidesPerView={props.front && !isMobile ? 3 : 1}
 				modules={[Navigation]}
 				onSlideChange={() => console.log("slide change")}
 				onSwiper={(swiper) => console.log(swiper)}

@@ -99,13 +99,6 @@ const Search = (props) => {
 					<AccordionContent
 						elements={[
 							{
-								title: "Artistas",
-								component: (
-									<Artists artistfetchurl="/nimbus/v1/artists" />
-								),
-								id: "panel-artistas",
-							},
-							{
 								title: "Disciplinas",
 								component: (
 									<TaxView
@@ -200,10 +193,15 @@ const Search = (props) => {
 								mask={["fas", "circle"]}
 							/>
 							<Typography variant="body1">
-								¡Lo sentimos! No hay resultados asociados a tu
-								busqueda. Inténtalo de nuevo o usa los siguentes
-								filtos: “Artistas”, “Disciplinas”,
-								“Territorios”.
+								<p>
+									¡Lo sentimos! No hay resultados asociados a
+									tu busqueda.
+								</p>
+								<p>
+									Inténtalo de nuevo o usa los siguentes
+									filtros: “Artistas”, “Disciplinas”,
+									“Territorios”.
+								</p>
 							</Typography>
 						</Box>
 					)}

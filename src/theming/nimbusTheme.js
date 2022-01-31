@@ -6,7 +6,7 @@ const nimbusTheme = createTheme({
     primary: {
       main: "#E6005C",
       light: "rgba(230,0,92,0.6)",
-      dark: "#5C0025",
+      dark: "#0A0A1F",
     },
     secondary: {
       main: "#333399",
@@ -45,6 +45,16 @@ const nimbusTheme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 0,
+        },
+      },
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        content: {
+          margin: "12px 0",
+          "&$expanded": {
+            margin: "12px 0",
+          },
         },
       },
     },

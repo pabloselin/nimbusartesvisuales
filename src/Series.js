@@ -50,6 +50,7 @@ const Series = (props) => {
 										.serie_documental_nimbus.title
 								}
 							</SectionTitle>
+							<FullWidthTitle variant="h2">Avance</FullWidthTitle>
 							<Box sx={{ mb: 2 }}>
 								<Grid container columns={{ md: 12 }}>
 									<Grid item md={6}>
@@ -80,6 +81,8 @@ const Series = (props) => {
 						</>
 					)}
 
+					<FullWidthTitle variant="h2">Capítulos</FullWidthTitle>
+
 					{content.videos.map((video) => (
 						<Box sx={{ mb: 4 }}>
 							<FullWidthTitle variant="h2">
@@ -101,13 +104,13 @@ const Series = (props) => {
 								>
 									<Box theme={theme} sx={{ p: 2 }}>
 										<Typography sx={{ fontWeight: "bold" }}>
-											{video.duracion}
+											Duración: {video.duracion}
 										</Typography>
 										<Typography sx={{ fontWeight: "bold" }}>
-											{video.subtitulos}
+											Subtítulos: {video.subtitulos}
 										</Typography>
 										<Typography sx={{ fontWeight: "bold" }}>
-											{video.audio}
+											Audio: {video.audio}
 										</Typography>
 									</Box>
 									<Box

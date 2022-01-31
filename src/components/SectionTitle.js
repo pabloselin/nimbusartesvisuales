@@ -7,7 +7,7 @@ const SectionTitle = (props) => {
 		fontFamily: theme.typography.headingsFont,
 		color: theme.palette.secondary.main,
 		[theme.breakpoints.down("md")]: {
-			display: "none",
+			fontSize: "18px",
 		},
 		paddingLeft: "12px",
 	}));

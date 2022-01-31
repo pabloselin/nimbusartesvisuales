@@ -16,15 +16,15 @@ const FichaObra = (props) => (
 			sx={{
 				color: props.dark
 					? props.theme.palette.secondary.lighter
-					: "#333",
+					: "#0A0A1F",
 				fontSize: "18px",
 				fontFamily: props.theme.typography.fontFamily,
 				fontWeight: "700",
 			}}
 		>
-			{props.work.images.title}
+			Título: {props.work.images.title}
 		</Typography>
-		<Typography>
+		<Typography sx={{ color: "#0A0A1F" }}>
 			<br />
 			{props.work.technique && <>Técnica: {props.work.technique}</>}
 			{props.work.medidas && (

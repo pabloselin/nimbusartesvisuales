@@ -25,6 +25,9 @@ const StyledLink = styled(Link)(({ theme }) => ({
 	fontSize: "20px",
 	display: "inline-block",
 	padding: "4px",
+	["@media screen and (max-width: 768px)"]: {
+		fontSize: "16px",
+	},
 }));
 
 const StyledMenu = styled(Menu)(({ theme }) => ({

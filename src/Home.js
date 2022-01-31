@@ -22,7 +22,10 @@ const Home = (props) => {
 					{
 						title: "Artistas",
 						component: (
-							<Artists artistfetchurl="/nimbus/v1/artists" />
+							<Artists
+								front
+								artistfetchurl="/nimbus/v1/artists"
+							/>
 						),
 						id: "panel-artistas",
 					},

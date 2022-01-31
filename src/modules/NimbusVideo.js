@@ -48,7 +48,7 @@ const NimbusVideo = (props) => {
 		svg {
 			position: absolute;
 			color: white;
-			font-size: 120px;
+			font-size: 45px;
 			transition: all ease-in 0.5s;
 		}
 
@@ -98,6 +98,11 @@ const NimbusVideo = (props) => {
 				>
 					<Typography variant="h4">
 						{props.video.chapter_title}
+					</Typography>
+					<Typography variant="body1" sx={{ fontWeight: "bold" }}>
+						Duración: {props.video.duracion} <br />
+						Audio: {props.video.audio} / Subtítulos:{" "}
+						{props.video.subtitulos}
 					</Typography>
 					<Typography
 						variant="body1"

@@ -55,6 +55,7 @@ import Search from "./Search";
 import Series from "./Series";
 import Serie from "./Serie";
 import SobreNimbus from "./SobreNimbus";
+import NimbusFooter from "./modules/NimbusFooter";
 
 const NimbusApp = (props) => {
 	return (
@@ -143,6 +144,7 @@ const NimbusApp = (props) => {
 								}
 							/>
 						</Routes>
+						<NimbusFooter />
 					</ThemeProvider>
 				</Router>
 			</Container>

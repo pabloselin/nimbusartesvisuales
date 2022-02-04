@@ -157,7 +157,11 @@ function nimbus_scripts() {
 								'content'	=> apply_filters('the_content', $frontpage->post_content)
 							),
 		'menu'				=> nimbus_menu_items('principal'),
-		'pages'				=> nimbus_get_pages_data()
+		'pages'				=> nimbus_get_pages_data(),
+		'instagram'			=> get_option('instagram'),
+		'facebook'			=> get_option('facebook'),
+		'youtube'			=> get_option('youtube'),
+		'email'				=> get_option('mail')
 	));
 }
 

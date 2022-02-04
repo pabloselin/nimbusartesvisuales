@@ -5,6 +5,7 @@ import Artists from "./Artists";
 import Search from "./Search";
 import AccordionContent from "./modules/AccordionContent";
 import HTMLContent from "./modules/HTMLContent";
+import FullWidthTitle from "./components/FullWidthTitle";
 import SectionTitle from "./components/SectionTitle";
 import WorksSlider from "./modules/WorksSlider";
 
@@ -14,7 +15,12 @@ const Home = (props) => {
 	return (
 		<>
 			<SectionTitle>{nimbus_app_data.site_description}</SectionTitle>
+
+			<FullWidthTitle variant="h1">Muestra de Obras</FullWidthTitle>
+			<p></p>
 			<WorksSlider square front works={nimbus_app_data.artistslider} />
+			<p></p>
+			<FullWidthTitle variant="h1">Buscador</FullWidthTitle>
 			<HTMLContent html={nimbus_app_data.frontpage.content} />
 
 			<AccordionContent

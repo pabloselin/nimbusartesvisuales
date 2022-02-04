@@ -61,119 +61,132 @@ const Artists = (props) => {
 	}, [content]);
 
 	return (
-		<Box sx={{ backgroundColor: theme.palette.background.default, pt: 1 }}>
+		<>
 			{!props.front && <SectionTitle>Artistas</SectionTitle>}
-			{content.artists && content.artists.length ? (
-				<div>
+			<Box
+				sx={{
+					backgroundColor: theme.palette.background.default,
+					pt: 1,
+				}}
+			>
+				{content.artists && content.artists.length ? (
 					<div>
-						{!termSlug ? (
-							<>
-								<LetterSlider
-									setLetter={setLetter}
-									activeLetter={letter}
-									artists={content.artists}
-								/>
-							</>
-						) : (
-							<SectionTitle variant="h3" padded>
-								{content.termData.name}
-							</SectionTitle>
-						)}
-					</div>
+						<div>
+							{!termSlug ? (
+								<>
+									<LetterSlider
+										setLetter={setLetter}
+										activeLetter={letter}
+										artists={content.artists}
+									/>
+								</>
+							) : (
+								<SectionTitle variant="h3" padded>
+									{content.termData.name}
+								</SectionTitle>
+							)}
+						</div>
 
-					<Box
-						sx={{
-							backgroundColor: theme.palette.background.default,
-						}}
-					>
-						<Outlet />
-						<Box sx={{ padding: "12px" }}>
-							<ArtistsGrid>
-								{content.artists !== undefined && (
-									<>
-										{!termSlug ? (
-											alphabet.map((idxletter) => (
-												<>
-													{((letter.length > 0 &&
-														letter === idxletter) ||
-														letter === "all") && (
-														<>
-															{content.artists
-																.filter(
-																	(artist) =>
-																		artist.lastname
-																			.toUpperCase()
-																			.startsWith(
-																				idxletter
-																			)
-																)
-																.map(
-																	(
-																		artist
-																	) => (
-																		<ArtistMini
-																			artistname={`${artist.name} ${artist.lastname} ${artist.secondlastname}`}
-																			artistlink={`/artistas/${artist.slug}`}
-																			artistimg={
-																				artist.works
-																					? artist
-																							.works[0]
-																							.images
-																							.sizes
-																							.thumbnail
-																							.url
-																					: null
-																			}
-																			key={
-																				artist.id
-																			}
-																		></ArtistMini>
+						<Box
+							sx={{
+								backgroundColor:
+									theme.palette.background.default,
+							}}
+						>
+							<Outlet />
+							<Box sx={{ padding: "12px" }}>
+								<ArtistsGrid>
+									{content.artists !== undefined && (
+										<>
+											{!termSlug ? (
+												alphabet.map((idxletter) => (
+													<>
+														{((letter.length > 0 &&
+															letter ===
+																idxletter) ||
+															letter ===
+																"all") && (
+															<>
+																{content.artists
+																	.filter(
+																		(
+																			artist
+																		) =>
+																			artist.lastname
+																				.toUpperCase()
+																				.startsWith(
+																					idxletter
+																				)
 																	)
-																)}
-														</>
+																	.map(
+																		(
+																			artist
+																		) => (
+																			<ArtistMini
+																				artistname={`${artist.name} ${artist.lastname} ${artist.secondlastname}`}
+																				artistlink={`/artistas/${artist.slug}`}
+																				artistimg={
+																					artist.works
+																						? artist
+																								.works[0]
+																								.images
+																								.sizes
+																								.thumbnail
+																								.url
+																						: null
+																				}
+																				key={
+																					artist.id
+																				}
+																			></ArtistMini>
+																		)
+																	)}
+															</>
+														)}
+													</>
+												))
+											) : (
+												<>
+													{content.artists.map(
+														(artist) => (
+															<ArtistMini
+																artistname={`${artist.name} ${artist.lastname} ${artist.secondlastname}`}
+																artistlink={`/artistas/${artist.slug}`}
+																artistimg={
+																	artist.works
+																		.length >
+																	0
+																		? artist
+																				.works[0]
+																				.images
+																				.url
+																		: null
+																}
+																key={artist.id}
+															/>
+														)
 													)}
 												</>
-											))
-										) : (
-											<>
-												{content.artists.map(
-													(artist) => (
-														<ArtistMini
-															artistname={`${artist.name} ${artist.lastname} ${artist.secondlastname}`}
-															artistlink={`/artistas/${artist.slug}`}
-															artistimg={
-																artist.works
-																	.length > 0
-																	? artist
-																			.works[0]
-																			.images
-																			.url
-																	: null
-															}
-															key={artist.id}
-														/>
-													)
-												)}
-											</>
-										)}
+											)}
 
-										{props.taxonomy && (
-											<TaxView
-												taxonomy={props.taxonomy}
-												localData={nimbus_app_data}
-												curterm={content.termData}
-											/>
-										)}
-									</>
-								)}
-							</ArtistsGrid>
+											{props.taxonomy && (
+												<TaxView
+													taxonomy={props.taxonomy}
+													localData={nimbus_app_data}
+													curterm={content.termData}
+												/>
+											)}
+										</>
+									)}
+								</ArtistsGrid>
+							</Box>
 						</Box>
-					</Box>
-				</div>
-			) : (
-				<Loading />
-			)}
-		</Box>
+					</div>
+				) : (
+					<Loading />
+				)}
+			</Box>
+		</>
 	);
 };
 

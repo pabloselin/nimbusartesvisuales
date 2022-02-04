@@ -67,6 +67,24 @@ const Series = (props) => {
 									</Grid>
 									<Grid item md={6}>
 										<Typography
+											variant="body1"
+											sx={{ p: 2, fontWeight: "bold" }}
+										>
+											Duración:{" "}
+											{
+												nimbus_app_data.pages
+													.serie_documental_nimbus
+													.fields.nimbusduracion
+											}
+											<br />
+											Subtítulos:{" "}
+											{
+												nimbus_app_data.pages
+													.serie_documental_nimbus
+													.fields.nimbussubtitulos
+											}
+										</Typography>
+										<Typography
 											sx={{ p: 2 }}
 											variant="body1"
 											dangerouslySetInnerHTML={{

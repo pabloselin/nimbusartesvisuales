@@ -24,6 +24,7 @@ const StyledDialog = styled(Dialog)(({ theme }) => ({
 	["@media screen and (max-width: 768px)"]: {
 		"& img": {
 			maxWidth: "100%",
+			maxHeight: "none",
 			height: "auto",
 		},
 	},
@@ -44,8 +45,8 @@ const BigImgDialog = (props) => {
 
 	return (
 		<StyledDialog
+			fullScreen
 			fullWidth={true}
-			maxWidth={isMobile ? "sm" : "lg"}
 			open={true}
 			onClose={props.handleClose}
 		>
@@ -68,7 +69,10 @@ const BigImgDialog = (props) => {
 				<Box
 					sx={{
 						textAlign: "center",
-						p: 2,
+						pt: 6,
+						pl: 2,
+						pb: 2,
+						pr: 2,
 					}}
 				>
 					<img

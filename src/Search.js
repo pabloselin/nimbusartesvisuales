@@ -46,6 +46,13 @@ const StyledInputTextField = styled("input")`
 	}
 `;
 
+const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
+	background-color: #ccc;
+	border-radius: 50%;
+	color: #6c6c6c;
+	padding: 12px;
+`;
+
 const Search = (props) => {
 	//Search functionality
 	const [searchTerm, setSearchTerm] = useState("");
@@ -197,11 +204,7 @@ const Search = (props) => {
 									theme.palette.background.default,
 							}}
 						>
-							<FontAwesomeIcon
-								icon="search"
-								size="3x"
-								mask={["fas", "circle"]}
-							/>
+							<StyledFontAwesomeIcon icon="search" size="4x" />
 							<Typography variant="body1">
 								<p>
 									¡Lo sentimos! No hay resultados asociados a

@@ -28,6 +28,20 @@ const StyledDiscipline = styled("p")`
 	margin: 0;
 `;
 
+const ContactTypography = styled(Typography)`
+	text-transform: none;
+	border: 1px solid white;
+	border-radius: 20px;
+	padding: 6px 12px;
+	display: inline-block;
+	font-size: 16px;
+	text-decoration: none;
+	margin: 0;
+	a {
+		text-decoration: none;
+	}
+`;
+
 const Artist = (props) => {
 	//fetch single artist
 	const theme = useTheme();
@@ -223,44 +237,59 @@ const Artist = (props) => {
 									Contacta al artista
 								</Typography>
 								{artist.data.email && (
-									<Typography variant="body1" my={2}>
-										<StyledIcon icon="envelope" />
-										<Link
-											href={`mailto:${artist.data.email}`}
-											underline="always"
-											color="#ffffff"
+									<p>
+										<ContactTypography
+											variant="button"
+											my={2}
 										>
-											{artist.data.email}
-										</Link>
-									</Typography>
+											<StyledIcon icon="envelope" />
+											<Link
+												href={`mailto:${artist.data.email}`}
+												underline="always"
+												color="#ffffff"
+											>
+												Enviar un email
+											</Link>
+										</ContactTypography>
+									</p>
 								)}
 								{artist.data.phone && (
-									<Typography variant="body1" my={2}>
-										<StyledIcon icon="phone" />
-										<Link
-											href={`tel:${artist.data.phone}`}
-											underline="always"
-											color="#ffffff"
+									<p>
+										<ContactTypography
+											variant="button"
+											my={2}
 										>
-											{artist.data.phone}
-										</Link>
-									</Typography>
+											<StyledIcon icon="phone" />
+											<Link
+												href={`tel:${artist.data.phone}`}
+												underline="always"
+												color="#ffffff"
+											>
+												Llamar por teléfono
+											</Link>
+										</ContactTypography>
+									</p>
 								)}
 								{artist.data.webs[0].linkinfo.length > 0 && (
-									<Typography variant="body1" my={2}>
-										{artist.data.webs.map((url) => (
-											<>
-												<StyledIcon icon="globe" />
-												<Link
-													href={url.linkinfo}
-													underline="always"
-													color="#ffffff"
-												>
-													{url.linkinfo}
-												</Link>
-											</>
-										))}
-									</Typography>
+									<p>
+										<ContactTypography
+											variant="button"
+											my={2}
+										>
+											{artist.data.webs.map((url) => (
+												<>
+													<StyledIcon icon="globe" />
+													<Link
+														href={url.linkinfo}
+														underline="always"
+														color="#ffffff"
+													>
+														Visitar su sitio web
+													</Link>
+												</>
+											))}
+										</ContactTypography>
+									</p>
 								)}
 							</Box>
 						</Grid>

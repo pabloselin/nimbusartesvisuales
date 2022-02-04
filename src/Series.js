@@ -51,7 +51,7 @@ const Series = (props) => {
 								}
 							</SectionTitle>
 							<FullWidthTitle variant="h2">Avance</FullWidthTitle>
-							<Box sx={{ mb: 2 }}>
+							<Box sx={{ backgroundColor: "#f0f0f0" }}>
 								<Grid container columns={{ md: 12 }}>
 									<Grid item md={6}>
 										<NimbusVideo
@@ -102,7 +102,7 @@ const Series = (props) => {
 					<FullWidthTitle variant="h2">Capítulos</FullWidthTitle>
 
 					{content.videos.map((video) => (
-						<Box sx={{ mb: 4 }}>
+						<Box>
 							<FullWidthTitle variant="h2">
 								<StyledRouterLink
 									to={`/serie-documental-nimbus/${video.slug}`}

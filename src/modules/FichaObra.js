@@ -7,7 +7,7 @@ const FichaObra = (props) => (
 			padding: props.nopad ? 0 : "12px 24px 12px 24px",
 			textAlign: "left",
 			backgroundColor: props.dark
-				? props.theme.palette.background.darker
+				? "#1A1A1A"
 				: props.theme.palette.background.default,
 		}}
 	>
@@ -24,7 +24,13 @@ const FichaObra = (props) => (
 		>
 			Título: {props.work.images.title}
 		</Typography>
-		<Typography sx={{ color: "#0A0A1F" }}>
+		<Typography
+			sx={{
+				color: props.dark
+					? props.theme.palette.secondary.lighter
+					: "#0A0A1F",
+			}}
+		>
 			<br />
 			{props.work.technique && <>Técnica: {props.work.technique}</>}
 			{props.work.medidas && (

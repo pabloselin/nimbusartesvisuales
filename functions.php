@@ -214,7 +214,8 @@ add_action('after_setup_theme', 'nimbus_register_menu', 0);
 function nimbus_get_plainterms($taxonomy) {
 	$terms = get_terms(
 			array( 	
-				'taxonomy' 	=> $taxonomy
+				'taxonomy' 	=> $taxonomy,
+				'parent'	=> 0
 				)
 			);
 	$plainterms = [];

@@ -62,7 +62,7 @@ const NimbusVideo = (props) => {
 	const NimbusThumb = (props) => (
 		<StyledThumb theme={theme} onClick={props.onClick}>
 			<FontAwesomeIcon icon={["fas", "play-circle"]} size="xl" />
-			<img src={getVideoImg(props.videoid)} />
+			<img src={props.img ? props.img : getVideoImg(props.videoid)} />
 		</StyledThumb>
 	);
 
@@ -83,7 +83,10 @@ const NimbusVideo = (props) => {
 						<RouterLink
 							to={`/serie-documental-nimbus/${props.video.slug}`}
 						>
-							<NimbusThumb videoid={props.video.video_id} />
+							<NimbusThumb
+								img={props.video.video_thumb}
+								videoid={props.video.video_id}
+							/>
 						</RouterLink>
 					)}
 				</>

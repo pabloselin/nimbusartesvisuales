@@ -95,15 +95,21 @@ const Artist = (props) => {
 														{discipline.top}
 													</strong>
 													{discipline.subterms
-														.length > 0 &&
-														discipline.subterms.map(
-															(subterm) => (
-																<span>
-																	{" "}
-																	{subterm}
-																</span>
-															)
-														)}
+														.length > 0 && (
+														<>
+															<span>:</span>
+															{discipline.subterms.map(
+																(subterm) => (
+																	<span>
+																		{" "}
+																		{
+																			subterm
+																		}
+																	</span>
+																)
+															)}
+														</>
+													)}
 												</StyledDiscipline>
 											)
 										)}
@@ -173,6 +179,7 @@ const Artist = (props) => {
 								sm={8}
 							>
 								<WorksSlider
+									square
 									artist={artistName}
 									artistSlug={artist.data.slug}
 									title="Muestra de Obras"

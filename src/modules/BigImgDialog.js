@@ -14,8 +14,7 @@ import FichaObra from "./FichaObra";
 const StyledDialog = styled(Dialog)(({ theme }) => ({
 	"& .MuiPaper-root": {
 		borderRadius: 0,
-		backgroundColor: theme.palette.background.darker,
-		border: `1px solid ${theme.palette.secondary.lighter}`,
+		backgroundColor: "#1A1A1A",
 		color: "white",
 	},
 	"& img": {

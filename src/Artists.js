@@ -87,113 +87,87 @@ const Artists = (props) => {
 						}}
 					>
 						<Outlet />
-
-						{content.artists !== undefined && (
-							<div>
-								{!termSlug ? (
-									alphabet.map((idxletter) => (
-										<>
-											{((letter.length > 0 &&
-												letter === idxletter) ||
-												letter === "all") && (
-												<Box sx={{ padding: "12px" }}>
-													{console.log(
-														empties.empties
-													)}
-													{empties.empties !==
-														undefined &&
-													empties.empties.indexOf(
-														idxletter
-													) == -1 ? (
-														<LetterHeading
-															sx={{
-																color: theme
-																	.palette
-																	.secondary
-																	.main,
-																borderColor:
-																	theme
-																		.palette
-																		.secondary
-																		.main,
-																borderWidth:
-																	"1px",
-																borderStyle:
-																	"solid",
-															}}
-															variant="h2"
-														>
-															{idxletter}
-															{console.log(
-																empties.empties.indexOf(
-																	idxletter
+						<Box sx={{ padding: "12px" }}>
+							<ArtistsGrid>
+								{content.artists !== undefined && (
+									<>
+										{!termSlug ? (
+											alphabet.map((idxletter) => (
+												<>
+													{((letter.length > 0 &&
+														letter === idxletter) ||
+														letter === "all") && (
+														<>
+															{content.artists
+																.filter(
+																	(artist) =>
+																		artist.lastname
+																			.toUpperCase()
+																			.startsWith(
+																				idxletter
+																			)
 																)
-															)}
-														</LetterHeading>
-													) : (
-														<p />
-													)}
-
-													<ArtistsGrid>
-														{content.artists
-															.filter((artist) =>
-																artist.lastname
-																	.toUpperCase()
-																	.startsWith(
-																		idxletter
+																.map(
+																	(
+																		artist
+																	) => (
+																		<ArtistMini
+																			artistname={`${artist.name} ${artist.lastname} ${artist.secondlastname}`}
+																			artistlink={`/artistas/${artist.slug}`}
+																			artistimg={
+																				artist.works
+																					? artist
+																							.works[0]
+																							.images
+																							.sizes
+																							.thumbnail
+																							.url
+																					: null
+																			}
+																			key={
+																				artist.id
+																			}
+																		></ArtistMini>
 																	)
-															)
-															.map((artist) => (
-																<ArtistMini
-																	artistname={`${artist.name} ${artist.lastname} ${artist.secondlastname}`}
-																	artistlink={`/artistas/${artist.slug}`}
-																	artistimg={
-																		artist.works
-																			? artist
-																					.works[0]
-																					.images
-																					.sizes
-																					.thumbnail
-																					.url
-																			: null
-																	}
-																	key={
-																		artist.id
-																	}
-																></ArtistMini>
-															))}
-													</ArtistsGrid>
-												</Box>
-											)}
-										</>
-									))
-								) : (
-									<ArtistsGrid>
-										{content.artists.map((artist) => (
-											<ArtistMini
-												artistname={`${artist.name} ${artist.lastname} ${artist.secondlastname}`}
-												artistlink={`/artistas/${artist.slug}`}
-												artistimg={
-													artist.works.length > 0
-														? artist.works[0].images
-																.url
-														: null
-												}
-												key={artist.id}
-											/>
-										))}
-									</ArtistsGrid>
-								)}
+																)}
+														</>
+													)}
+												</>
+											))
+										) : (
+											<>
+												{content.artists.map(
+													(artist) => (
+														<ArtistMini
+															artistname={`${artist.name} ${artist.lastname} ${artist.secondlastname}`}
+															artistlink={`/artistas/${artist.slug}`}
+															artistimg={
+																artist.works
+																	.length > 0
+																	? artist
+																			.works[0]
+																			.images
+																			.url
+																	: null
+															}
+															key={artist.id}
+														/>
+													)
+												)}
+											</>
+										)}
 
-								{props.taxonomy && (
-									<TaxView
-										taxonomy={props.taxonomy}
-										localData={nimbus_app_data}
-										curterm={content.termData}
-									/>
+										{props.taxonomy && (
+											<TaxView
+												taxonomy={props.taxonomy}
+												localData={nimbus_app_data}
+												curterm={content.termData}
+											/>
+										)}
+									</>
 								)}
-							</div>
-						)}
+							</ArtistsGrid>
+						</Box>
 					</Box>
 				</div>
 			) : (

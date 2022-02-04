@@ -21,6 +21,7 @@ const StyledSlideContent = styled("div")`
 		max-width: 100%;
 		height: auto;
 		&.square {
+			max-height: 400px;
 			height: 400px;
 			width: 400px;
 		}
@@ -31,7 +32,7 @@ const StyledSlideContent = styled("div")`
 `;
 
 const ImageContainer = styled("div")`
-	background-color: #0a0a1f;
+	background-color: white;
 	line-height: 0.2;
 	position: relative;
 
@@ -66,6 +67,7 @@ const ImageContainer = styled("div")`
 `;
 
 const SliderTitle = styled("div")`
+	display: none;
 	position: absolute;
 	top: 24px;
 	left: 24px;
@@ -116,7 +118,7 @@ const WorksSlider = (props) => {
 
 	const imageSize = (work) => {
 		let size;
-		if (props.front) {
+		if (props.square) {
 			size = work.images.sizes.thumbnail.url;
 		} else if (work.images.sizes.large) {
 			size = work.images.sizes.large.url;
@@ -138,6 +140,7 @@ const WorksSlider = (props) => {
 					nextEl: ".swiperNext",
 					prevEl: ".swiperPrev",
 				}}
+				spaceBetween={12}
 			>
 				{props.works &&
 					props.works.map((work) => (
@@ -160,19 +163,18 @@ const WorksSlider = (props) => {
 									)}
 									<img
 										className={
-											props.front ? "square" : "normal"
+											props.square ? "square" : "normal"
 										}
 										onClick={() => setBigImg(work)}
 										src={imageSize(work)}
 									/>
 								</ImageContainer>
-								{!props.front && (
-									<FichaObra work={work} theme={theme} />
-								)}
 							</StyledSlideContent>
 						</SwiperSlide>
 					))}
-				<SwiperNavigation className={props.front ? "square" : "normal"}>
+				<SwiperNavigation
+					className={props.square ? "square" : "normal"}
+				>
 					<FontAwesomeIcon
 						className="swiperNext"
 						icon="chevron-circle-right"

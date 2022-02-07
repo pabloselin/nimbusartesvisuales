@@ -9,6 +9,9 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import { styled } from "@mui/system";
+import Fab from "@mui/material/Fab";
+import Fade from "@mui/material/Fade";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
 	faEnvelope,
@@ -71,6 +74,24 @@ const Version = styled("span")`
 `;
 
 const NimbusApp = (props) => {
+	const topScroll = () => {
+		window.scrollTo(0, 0);
+	};
+
+	const [pos, setPos] = useState("top");
+	//const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
+	useEffect(() => {
+		document.addEventListener("scroll", (e) => {
+			let scrolled = document.scrollingElement.scrollTop;
+			if (scrolled >= 20) {
+				setPos("moved");
+			} else {
+				setPos("top");
+			}
+		});
+	}, []);
+
 	return (
 		<>
 			<CssBaseline />
@@ -158,9 +179,22 @@ const NimbusApp = (props) => {
 							/>
 						</Routes>
 						<NimbusFooter />
+						<Fade in={pos === "moved" ? true : false}>
+							<Fab
+								color="primary"
+								onClick={topScroll}
+								sx={{
+									position: "fixed",
+									bottom: "24px",
+									right: "24px",
+								}}
+							>
+								<FontAwesomeIcon icon={["fas", "chevron-up"]} />
+							</Fab>
+						</Fade>
+						<Version>{nimbus_app_data.version}</Version>
 					</ThemeProvider>
 				</Router>
-				<Version>{nimbus_app_data.version}</Version>
 			</Container>
 		</>
 	);

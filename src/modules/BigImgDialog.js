@@ -10,6 +10,7 @@ import { styled } from "@mui/system";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import FullWidthTitle from "../components/FullWidthTitle";
 import FichaObra from "./FichaObra";
+import WorksSlider from "./WorksSlider";
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
 	"& .MuiPaper-root": {
@@ -29,10 +30,6 @@ const StyledDialog = styled(Dialog)(({ theme }) => ({
 		},
 	},
 }));
-
-const StyledLink = styled(Link)`
-	color: white;
-`;
 
 const StyledDialogTitle = styled(DialogTitle)`
 	position: absolute;
@@ -75,47 +72,13 @@ const BigImgDialog = (props) => {
 						pr: 2,
 					}}
 				>
-					<img
-						src={
-							props.work.images.sizes.large !== undefined
-								? props.work.images.sizes.large.url
-								: props.work.images.full_url
-						}
-					/>
-				</Box>
-				<Box
-					sx={{
-						borderTop: `1px solid ${props.theme.palette.secondary.lighter}`,
-						borderBottom: `1px solid ${props.theme.palette.secondary.lighter}`,
-						pt: 1,
-						pl: 2,
-						pr: 2,
-						pb: 1,
-					}}
-				>
-					<Typography
-						variant="h2"
-						sx={{
-							fontSize: "28px",
-							textDecoration: "underline",
-							color: "white",
-						}}
-					>
-						{props.work.slug ? (
-							<StyledLink to={`/artistas/${props.work.slug}`}>
-								{props.work.artist}{" "}
-							</StyledLink>
-						) : (
-							<>{props.work.artist} </>
-						)}
-					</Typography>
-				</Box>
-				<Box sx={{ p: 2 }}>
-					<FichaObra
-						nopad
-						dark
-						theme={props.theme}
-						work={props.work}
+					<WorksSlider
+						full
+						artist={props.artist}
+						artistSlug={props.artistSlug}
+						title="Muestra de Obras"
+						works={props.works}
+						initialSlide={props.activeSlide}
 					/>
 				</Box>
 			</DialogContent>

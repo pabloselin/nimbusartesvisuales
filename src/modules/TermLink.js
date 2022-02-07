@@ -14,7 +14,8 @@ const StyledLink = styled(Link)`
 	text-decoration: none;
 	transition: all ease-in 0.3s;
 
-	&:hover {
+	&:hover,
+	&.active {
 		color: white;
 		background-color: #e6005c;
 		border-color: #e6005c;
@@ -22,7 +23,14 @@ const StyledLink = styled(Link)`
 `;
 
 const TermLink = (props) => {
-	return <StyledLink to={props.to}>{props.text}</StyledLink>;
+	return (
+		<StyledLink
+			className={`${props.active ? "active" : "std"}`}
+			to={props.to}
+		>
+			{props.text}
+		</StyledLink>
+	);
 };
 
 export default TermLink;

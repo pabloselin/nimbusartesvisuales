@@ -63,16 +63,21 @@ const Artists = (props) => {
 	return (
 		<>
 			{!props.front && <SectionTitle>Artistas</SectionTitle>}
+			{termSlug && content.artists && content.artists.length && (
+				<FullWidthTitle variant="h1" padded>
+					{content.termData.name}
+				</FullWidthTitle>
+			)}
 			<Box
 				sx={{
 					backgroundColor: theme.palette.background.default,
-					pt: 1,
+					pt: 2,
 				}}
 			>
 				{content.artists && content.artists.length ? (
 					<div>
 						<div>
-							{!termSlug ? (
+							{!termSlug && (
 								<>
 									<LetterSlider
 										setLetter={setLetter}
@@ -80,10 +85,6 @@ const Artists = (props) => {
 										artists={content.artists}
 									/>
 								</>
-							) : (
-								<SectionTitle variant="h3" padded>
-									{content.termData.name}
-								</SectionTitle>
 							)}
 						</div>
 

@@ -45,7 +45,7 @@ const NimbusFooter = (props) => {
 				(location.pathname === "/sobre-nimbus" ? (
 					<></>
 				) : (
-					<Grid item md={4} sx={{ p: 2 }}>
+					<Grid item md={4} sx={{ p: 3 }}>
 						<p>
 							Proyecto finaciado por el Ministerio de las
 							Culturas,las Artes y el Patrimonio 2021
@@ -54,7 +54,7 @@ const NimbusFooter = (props) => {
 					</Grid>
 				))}
 
-			<Grid item md={4} sx={{ p: 2 }}>
+			<Grid item md={4} sx={{ p: 3 }}>
 				<p>¿Quieres saber de nuestras actividades?</p>
 				<p>¡Sigue nuestras redes sociales!</p>
 				<p>
@@ -72,7 +72,7 @@ const NimbusFooter = (props) => {
 					</StyledLink>
 				</p>
 			</Grid>
-			<Grid item md={4} sx={{ p: 2 }}>
+			<Grid item md={4} sx={{ p: 3 }}>
 				<p>¿Quieres ser parte del directorio?</p>
 				<p>¡Escríbenos!</p>
 				<StyledButton href={`mailto:${nimbus_app_data.email}`}>

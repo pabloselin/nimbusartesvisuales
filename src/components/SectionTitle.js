@@ -9,7 +9,7 @@ const SectionTitle = (props) => {
 		[theme.breakpoints.down("md")]: {
 			fontSize: "18px",
 		},
-		paddingLeft: "12px",
+		paddingLeft: "16px",
 	}));
 
 	return <StyledTitle>{props.children}</StyledTitle>;

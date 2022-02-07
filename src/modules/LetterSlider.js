@@ -60,7 +60,7 @@ const LetterSlider = (props) => {
 		<Box
 			sx={{
 				padding: "6px",
-				margin: "12px",
+				margin: "12px 24px 12px 24px",
 				backgroundColor: "white",
 				borderRadius: "20px",
 				color: theme.palette.secondary.main,

@@ -5,7 +5,14 @@ export default function HTMLContent(props) {
 
 	return (
 		<Box
-			sx={{ p: 2, bgcolor: "#f0f0f0", fontFamily: "Inconsolata" }}
+			sx={{
+				pl: 3,
+				pr: 3,
+				pt: 2,
+				pb: 2,
+				bgcolor: "#f0f0f0",
+				fontFamily: "Inconsolata",
+			}}
 			dangerouslySetInnerHTML={{ __html: props.html }}
 		/>
 	);

@@ -6,7 +6,7 @@ const StyledLink = styled(Link)`
 	display: block;
 	position: relative;
 	overflow: hidden;
-	margin: 8px 4px;
+	margin: 14px;
 	width: 46%;
 	height: 178px;
 	max-width: 178px;

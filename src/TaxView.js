@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 
 const TaxView = (props) => {
 	return (
-		<Box sx={{ pt: 3, pb: 3 }}>
+		<Box sx={{ p: 3 }}>
 			{props.localData[props.taxonomy].map((term) => (
 				<TermLink
 					to={`/${props.taxonomy}/${term.slug}`}

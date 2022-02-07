@@ -9,7 +9,7 @@
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.0.3' );
+	define( '_S_VERSION', '1.1.3' );
 }
 
 if ( ! function_exists( 'nimbus_setup' ) ) :
@@ -161,7 +161,8 @@ function nimbus_scripts() {
 		'instagram'			=> get_option('instagram'),
 		'facebook'			=> get_option('facebook'),
 		'youtube'			=> get_option('youtube'),
-		'email'				=> get_option('mail')
+		'email'				=> get_option('mail'),
+		'version'			=> _S_VERSION
 	));
 }
 

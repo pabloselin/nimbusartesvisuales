@@ -13,6 +13,9 @@ import nimbusInstagramIcon from "./imgs/instagram.svg";
 import nimbusMailIcon from "./imgs/mail.svg";
 import nimbusWebIcon from "./imgs/web.svg";
 import nimbusYoutubeIcon from "./imgs/youtube.svg";
+import nimbusInstagramIconWhite from "./imgs/instagram_white.svg";
+import nimbusMailIconWhite from "./imgs/mail_white.svg";
+import nimbusWebIconWhite from "./imgs/web_white.svg";
 
 const StyledBox = styled(Box)`
 	h2 {
@@ -70,26 +73,49 @@ const StyledBox = styled(Box)`
 	p.nimbus-phone,
 	p.nimbus-mail,
 	p.nimbus-instagram,
-	p.nimbus-web {
-		padding-left: 36px;
-		background-position: center left;
+	p.nimbus-web,
+	a.nimbusMail,
+	a.nimbusPhone,
+	a.nimbusInstagram,
+	a.nimbusWeb {
+		display: block;
+		max-width: 220px;
+		padding: 6px 12px 6px 42px;
+		margin: 12px 0;
+		background-position: 12px center;
 		background-repeat: no-repeat;
+		border: 1px solid #333399;
+		border-radius: 30px;
+		text-decoration: none;
+		color: #333399;
+		&:hover {
+			background-color: #333399;
+			color: white;
+		}
 	}
 
-	p.nimbus-mail {
+	p.nimbus-mail,
+	a.nimbusMail {
 		background-image: url(${nimbusMailIcon});
+		&:hover {
+			background-image: url(${nimbusMailIconWhite});
+		}
 	}
 
-	p.nimbus-phone {
-		background-image: url(${nimbusMailIcon});
-	}
-
-	p.nimbus-instagram {
+	p.nimbus-instagram,
+	a.nimbusInstagram {
 		background-image: url(${nimbusInstagramIcon});
+		&:hover {
+			background-image: url(${nimbusInstagramIconWhite});
+		}
 	}
 
-	p.nimbus-web {
-		background-image: url(${nimbusMailIcon});
+	p.nimbus-web,
+	a.nimbusWeb {
+		background-image: url(${nimbusWebIcon});
+		&:hover {
+			background-image: url(${nimbusWebIconWhite});
+		}
 	}
 `;
 
@@ -141,7 +167,7 @@ const SobreNimbus = (props) => {
 						}}
 						sx={{
 							backgroundColor: "#f0f0f0",
-							p: 2,
+							p: 3,
 							fontFamily: "Inconsolata, sans-serif",
 						}}
 					/>
@@ -161,8 +187,8 @@ const SobreNimbus = (props) => {
 							backgroundColor: "#f0f0f0",
 							pt: 0,
 							pl: 2,
-							pb: 2,
-							pr: 2,
+							pb: 0,
+							pr: 0,
 							fontFamily: "Inconsolata, sans-serif",
 						}}
 					/>

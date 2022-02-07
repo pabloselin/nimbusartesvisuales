@@ -8,6 +8,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
+import { styled } from "@mui/system";
 
 import {
 	faEnvelope,
@@ -58,6 +59,16 @@ import Series from "./Series";
 import Serie from "./Serie";
 import SobreNimbus from "./SobreNimbus";
 import NimbusFooter from "./modules/NimbusFooter";
+
+const Version = styled("span")`
+	position: fixed;
+	font-size: 10px;
+	bottom: 0;
+	right: 0;
+	background-color: white;
+	display: inline-block;
+	padding: 3px;
+`;
 
 const NimbusApp = (props) => {
 	return (
@@ -149,6 +160,7 @@ const NimbusApp = (props) => {
 						<NimbusFooter />
 					</ThemeProvider>
 				</Router>
+				<Version>{nimbus_app_data.version}</Version>
 			</Container>
 		</>
 	);

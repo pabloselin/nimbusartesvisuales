@@ -21,6 +21,8 @@ export default function AccordionContent(props) {
 		<>
 			{props.elements.map((element) => (
 				<Accordion
+					disableGutters
+					elevation={0}
 					expanded={expanded === element.id}
 					onChange={handleChange(element.id)}
 					sx={{

@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material/styles";
 import logoFondart from "../imgs/logofondart.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "@mui/material/Link";
+import { useLocation } from "react-router-dom";
 import { styled } from "@mui/system";
 import Button from "@mui/material/Button";
 
@@ -25,6 +26,8 @@ const StyledButton = styled(Button)({
 
 const NimbusFooter = (props) => {
 	const theme = useTheme();
+	const location = useLocation();
+	console.log(location.pathname);
 	return (
 		<Grid
 			sx={{
@@ -38,13 +41,19 @@ const NimbusFooter = (props) => {
 			container
 			columns={{ xs: 12, sm: 12, md: 12 }}
 		>
-			<Grid item md={4} sx={{ p: 2 }}>
-				<p>
-					Proyecto finaciado por el Ministerio de las Culturas,las
-					Artes y el Patrimonio 2021
-				</p>
-				<img width="130" src={logoFondart} />
-			</Grid>
+			{location.pathname === "/sobre-nimbus/" ||
+				(location.pathname === "/sobre-nimbus" ? (
+					<></>
+				) : (
+					<Grid item md={4} sx={{ p: 2 }}>
+						<p>
+							Proyecto finaciado por el Ministerio de las
+							Culturas,las Artes y el Patrimonio 2021
+						</p>
+						<img width="130" src={logoFondart} />
+					</Grid>
+				))}
+
 			<Grid item md={4} sx={{ p: 2 }}>
 				<p>¿Quieres saber de nuestras actividades?</p>
 				<p>¡Sigue nuestras redes sociales!</p>

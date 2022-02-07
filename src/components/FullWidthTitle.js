@@ -14,6 +14,9 @@ const FullWidthTitle = (props) => {
 		borderBottomWidth: props.variant === "h1" ? 0 : "2px",
 		borderBottomStyle: "solid",
 		borderBottomColor: theme.palette.primary.main,
+		borderTopWidth: props.borderedTop ? "1px" : 0,
+		borderTopColor: theme.palette.primary.main,
+		borderTopStyle: "solid",
 		["@media screen and (min-width: 768px)"]: {
 			borderBottomWidth: props.variant === "h1" ? 0 : "1px",
 			borderTopWidth: props.dhb ? 0 : "1px",
@@ -25,7 +28,9 @@ const FullWidthTitle = (props) => {
 	}));
 
 	return (
-		<StyledHeading variant={props.variant}>{props.children}</StyledHeading>
+		<StyledHeading id={props.id} variant={props.variant}>
+			{props.children}
+		</StyledHeading>
 	);
 };
 

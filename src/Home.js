@@ -16,7 +16,9 @@ const Home = (props) => {
 		<>
 			<SectionTitle>{nimbus_app_data.site_description}</SectionTitle>
 
-			<FullWidthTitle variant="h1">Muestra de Obras</FullWidthTitle>
+			<FullWidthTitle borderedTop variant="h1">
+				Muestra de Obras
+			</FullWidthTitle>
 			<p></p>
 			<WorksSlider square front works={nimbus_app_data.artistslider} />
 			<p></p>

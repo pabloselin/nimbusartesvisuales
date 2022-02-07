@@ -182,7 +182,7 @@ function nimbus_get_pages_data() {
 
 	foreach($pages as $page) {
 		
-		$fields = ['nimbusurl_video', 'nimbusduracion', 'nimbussubtitulos'];
+		$fields = ['nimbusurl_video', 'nimbusduracion', 'nimbussubtitulos', 'seccion_equipo', 'seccion_contacto', 'seccion_colaboran'];
 
 		$fields_data = [];
 

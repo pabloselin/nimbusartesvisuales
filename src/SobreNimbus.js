@@ -29,10 +29,37 @@ const StyledBox = styled(Box)`
 		}
 	}
 
+	.wp-block-columns {
+		margin-bottom: 0;
+		margin-left: -18px;
+		margin-right: -18px;
+	}
+
+	.wp-block-column {
+		border-right: 2px solid white;
+		border-top: 2px solid white;
+		padding: 12px;
+		figure {
+			margin-bottom: 0;
+		}
+	}
+
+	.wp-block-columns:not(.is-not-stacked-on-mobile)
+		> .wp-block-column:not(:first-child) {
+		margin-left: 0;
+	}
+
+	.wp-block-column.withimg {
+		figure {
+			margin: -10px;
+		}
+	}
+
 	h2 {
 		font-family: "Bebas Neue", sans-serif;
 		text-transform: uppercase;
 		font-weight: 400;
+		margin-top: 0;
 	}
 
 	img {
@@ -67,23 +94,30 @@ const StyledBox = styled(Box)`
 `;
 
 const SobreNimbus = (props) => {
-	const [content, setContent] = useState({});
+	//const [content, setContent] = useState({});
 
 	const isMobile = useMediaQuery("(max-width: 768px)");
+	const content = {
+		data: {
+			title: nimbus_app_data.pages.sobre_nimbus.title,
+			content: nimbus_app_data.pages.sobre_nimbus.content,
+			fields: nimbus_app_data.pages.sobre_nimbus.fields,
+		},
+	};
 
-	useEffect(() => {
-		async function getContent(artistSlug) {
-			let fetchroute = "/wp/v2/pages?slug=sobre-nimbus";
+	// useEffect(() => {
+	// 	async function getContent(artistSlug) {
+	// 		let fetchroute = "/wp/v2/pages?slug=sobre-nimbus";
 
-			apiFetch({ path: fetchroute }).then((result) => {
-				setContent({ data: result[0] });
-			});
-		}
+	// 		apiFetch({ path: fetchroute }).then((result) => {
+	// 			setContent({ data: result[0] });
+	// 		});
+	// 	}
 
-		console.log("fetching page content");
+	// 	console.log("fetching page content");
 
-		getContent();
-	}, []);
+	// 	getContent();
+	// }, []);
 
 	return (
 		<Grid container columns={{ xs: 12, sm: 12 }}>
@@ -91,17 +125,19 @@ const SobreNimbus = (props) => {
 				<Grid xs="12">
 					{isMobile ? (
 						<FullWidthTitle variant="h1">
-							{content.data.title.rendered}
+							{content.data.title}
 						</FullWidthTitle>
 					) : (
 						<SectionTitle variant="h1">
-							{content.data.title.rendered}
+							{content.data.title}
 						</SectionTitle>
 					)}
-
+					<FullWidthTitle noMargin variant="h1" borderedTop>
+						Somos
+					</FullWidthTitle>
 					<StyledBox
 						dangerouslySetInnerHTML={{
-							__html: content.data.content.rendered,
+							__html: content.data.content,
 						}}
 						sx={{
 							backgroundColor: "#f0f0f0",
@@ -109,6 +145,53 @@ const SobreNimbus = (props) => {
 							fontFamily: "Inconsolata, sans-serif",
 						}}
 					/>
+					<FullWidthTitle
+						noMargin
+						variant="h1"
+						id="equipo"
+						borderedTop
+					>
+						Equipo
+					</FullWidthTitle>
+					<StyledBox
+						dangerouslySetInnerHTML={{
+							__html: content.data.fields.seccion_equipo,
+						}}
+						sx={{
+							backgroundColor: "#f0f0f0",
+							pt: 0,
+							pl: 2,
+							pb: 2,
+							pr: 2,
+							fontFamily: "Inconsolata, sans-serif",
+						}}
+					/>
+					<FullWidthTitle
+						noMargin
+						variant="h1"
+						id="colaboran"
+						borderedTop
+					>
+						Colaboran
+					</FullWidthTitle>
+					<StyledBox
+						dangerouslySetInnerHTML={{
+							__html: content.data.fields.seccion_colaboran,
+						}}
+						sx={{
+							backgroundColor: "#f0f0f0",
+							p: 2,
+							fontFamily: "Inconsolata, sans-serif",
+						}}
+					/>
+					<FullWidthTitle
+						noMargin
+						variant="h1"
+						id="contacto"
+						borderedTop
+					>
+						Contacto
+					</FullWidthTitle>
 				</Grid>
 			)}
 		</Grid>

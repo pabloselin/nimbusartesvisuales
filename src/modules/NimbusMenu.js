@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { styled } from "@mui/system";
-import { useState, useEffect } from "@wordpress/element";
+import { useState, useEffect, useRef } from "@wordpress/element";
 import nimbusLogo from "../imgs/nimbusLogo";
 import nimbusLogoDesktop from "../imgs/nimbusLogoDesktop";
 import { useTheme } from "@mui/material/styles";
@@ -10,6 +10,8 @@ import MenuItem from "@mui/material/MenuItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
+import Drawer from "@mui/material/Drawer";
+import { HashLink } from "react-router-hash-link";
 
 const NimbusNav = styled("nav")(({ theme }) => ({
 	display: "flex",
@@ -30,6 +32,17 @@ const StyledLink = styled(Link)(({ theme }) => ({
 	},
 }));
 
+const StyledHashLink = styled(HashLink)(({ theme }) => ({
+	fontFamily: theme.typography.headingsFont,
+	textDecoration: "none",
+	fontSize: "20px",
+	display: "inline-block",
+	padding: "4px",
+	["@media screen and (max-width: 768px)"]: {
+		fontSize: "16px",
+	},
+}));
+
 const StyledMenu = styled(Menu)(({ theme }) => ({
 	"& .MuiPaper-root": {
 		borderRadius: 0,
@@ -39,7 +52,9 @@ const StyledMenu = styled(Menu)(({ theme }) => ({
 const NimbusMenu = (props) => {
 	const theme = useTheme();
 	const [anchorEl, setAnchorEl] = useState(null);
+	const [openDrawer, setOpenDrawer] = useState(false);
 	const open = Boolean(anchorEl);
+	const [hash, setHash] = useState(null);
 
 	const handleClick = (event) => {
 		console.log(event.currentTarget);
@@ -48,10 +63,90 @@ const NimbusMenu = (props) => {
 
 	const handleClose = () => {
 		setAnchorEl(null);
+		setOpenDrawer(false);
+	};
+
+	const toggleDrawer = (open) => (event) => {
+		if (
+			event.type === "keydown" &&
+			(event.key === "Tab" || event.key === "Shift")
+		) {
+			return;
+		}
+		setOpenDrawer(open);
 	};
 
 	let location = useLocation();
 	const isMobile = useMediaQuery("(max-width: 768px)");
+
+	const ExtraMenu = () => {
+		return (
+			<Drawer
+				anchor={"top"}
+				open={openDrawer}
+				onClose={toggleDrawer(false)}
+			>
+				<MenuItem sx={{ borderBottom: "1px solid #0A0A1F" }}>
+					MENU
+				</MenuItem>
+				<MenuItem onClick={handleClose}>
+					<StyledLink
+						sx={{
+							color:
+								location.pathname === "/sobre-nimbus"
+									? theme.palette.primary.main
+									: theme.palette.secondary.main,
+						}}
+						to="/sobre-nimbus"
+					>
+						Sobre Nimbus
+					</StyledLink>
+				</MenuItem>
+				<MenuItem onClick={handleClose}>
+					<StyledHashLink
+						smooth
+						sx={{
+							color:
+								location.pathname === "/sobre-nimbus"
+									? theme.palette.primary.main
+									: theme.palette.secondary.main,
+						}}
+						to="/sobre-nimbus/#equipo"
+					>
+						Equipo
+					</StyledHashLink>
+				</MenuItem>
+				<MenuItem onClick={handleClose}>
+					<StyledHashLink
+						smooth
+						sx={{
+							color:
+								location.pathname === "/sobre-nimbus"
+									? theme.palette.primary.main
+									: theme.palette.secondary.main,
+						}}
+						to="/sobre-nimbus/#colaboran"
+					>
+						Colaboran
+					</StyledHashLink>
+				</MenuItem>
+				<MenuItem onClick={handleClose}>
+					<StyledHashLink
+						smooth
+						sx={{
+							color:
+								location.pathname === "/sobre-nimbus"
+									? theme.palette.primary.main
+									: theme.palette.secondary.main,
+						}}
+						to="/sobre-nimbus/#contacto"
+					>
+						Contacto
+					</StyledHashLink>
+				</MenuItem>
+			</Drawer>
+		);
+	};
 
 	return (
 		<NimbusNav>
@@ -111,35 +206,14 @@ const NimbusMenu = (props) => {
 						aria-controls={open ? "nimbusMenu" : undefined}
 						aria-haspopup="true"
 						aria-expanded={open ? "true" : undefined}
-						onClick={handleClick}
+						onClick={toggleDrawer(!openDrawer)}
 					>
 						<FontAwesomeIcon
 							id="nimbusToggleMenu"
 							icon={["fas", "chevron-down"]}
 						/>
 					</IconButton>
-					<StyledMenu
-						id="nimbusMenu"
-						aria-labelledby="nimbusToggleMenu"
-						anchorEl={anchorEl}
-						open={open}
-						onClose={handleClose}
-						anchorOrigin={{}}
-					>
-						<MenuItem onClick={handleClose}>
-							<StyledLink
-								sx={{
-									color:
-										location.pathname === "/sobre-nimbus"
-											? theme.palette.primary.main
-											: theme.palette.secondary.main,
-								}}
-								to="/sobre-nimbus"
-							>
-								Sobre Nimbus
-							</StyledLink>
-						</MenuItem>
-					</StyledMenu>
+					<ExtraMenu />
 				</>
 			)}
 		</NimbusNav>

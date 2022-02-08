@@ -189,7 +189,12 @@ function nimbus_get_pages_data() {
 
 		foreach($fields as $field) {
 			if(get_post_meta($page->ID, $field, true)) {
-				$fields_data[$field] = 	get_post_meta($page->ID, $field, true);
+				if($field == 'seccion_equipo' || $field == 'seccion_contacto' || $field == 'seccion_colaboran') {
+					$fields_data[$field] = 	apply_filters('the_content', get_post_meta($page->ID, $field, true));	
+				} else {
+					$fields_data[$field] = 	get_post_meta($page->ID, $field, true);
+				}
+				
 			}	 
 		}
 

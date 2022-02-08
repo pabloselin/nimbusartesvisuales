@@ -58,6 +58,16 @@ const StyledBox = styled(Box)`
 		}
 	}
 
+	.gallery {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+		figure {
+			max-width: 150px;
+		}
+	}
+
 	h2 {
 		font-family: "Bebas Neue", sans-serif;
 		text-transform: uppercase;

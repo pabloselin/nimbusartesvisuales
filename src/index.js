@@ -12,6 +12,7 @@ import { styled } from "@mui/system";
 import Fab from "@mui/material/Fab";
 import Fade from "@mui/material/Fade";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import RouteChangeTracker from "./RouteChangeTracker";
 
 import {
 	faEnvelope,
@@ -194,6 +195,7 @@ const NimbusApp = (props) => {
 						</Fade>
 						<Version>{nimbus_app_data.version}</Version>
 					</ThemeProvider>
+					<RouteChangeTracker />
 				</Router>
 			</Container>
 		</>

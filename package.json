@@ -58,6 +58,7 @@
     "@fortawesome/react-fontawesome": "^0.1.16",
     "@mui/material": "^5.2.4",
     "fuse.js": "^6.4.6",
+    "react-ga": "^3.3.0",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.1.1",
     "react-router-hash-link": "^2.4.3",

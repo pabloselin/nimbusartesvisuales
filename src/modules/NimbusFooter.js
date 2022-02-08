@@ -32,7 +32,11 @@ const NimbusFooter = (props) => {
 		<Grid
 			sx={{
 				backgroundColor: theme.palette.background.dark,
-				mt: 1,
+				mt:
+					location.pathname === "/sobre-nimbus" ||
+					location.pathname === "/sobre-nimbus/"
+						? 0
+						: 1,
 				typography: {
 					color: "white",
 					fontFamily: theme.typography.fontFamily,

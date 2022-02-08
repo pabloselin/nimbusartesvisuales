@@ -218,7 +218,7 @@ const Artist = (props) => {
 						container
 						columns={{ xs: 1, sm: 12, md: 12 }}
 						sx={{
-							backgroundColor: theme.palette.background.dark,
+							backgroundColor: "#737373",
 							typography: {
 								color: "white",
 							},

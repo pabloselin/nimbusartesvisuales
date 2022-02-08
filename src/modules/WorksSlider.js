@@ -21,9 +21,9 @@ const StyledSlideContent = styled("div")`
 		max-width: 100%;
 		height: auto;
 		&.square {
-			max-height: 400px;
-			height: 400px;
-			width: 400px;
+			max-height: 392px;
+			height: 392px;
+			width: 392px;
 		}
 	}
 	p {

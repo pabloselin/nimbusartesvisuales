@@ -102,7 +102,7 @@ const Search = (props) => {
 		<div theme={theme}>
 			{props.expanded && (
 				<>
-					<SectionTitle>Buscador</SectionTitle>
+					<SectionTitle>Buscador de Artistas</SectionTitle>
 					<AccordionContent
 						elements={[
 							{

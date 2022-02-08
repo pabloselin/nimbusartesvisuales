@@ -153,18 +153,7 @@ const NimbusMenu = (props) => {
 			<Link to="/">
 				<img src={isMobile ? nimbusLogo : nimbusLogoDesktop} />
 			</Link>
-			<StyledLink
-				active={location.pathname === "/artistas"}
-				to="/artistas"
-				sx={{
-					color:
-						location.pathname === "/artistas"
-							? theme.palette.primary.main
-							: theme.palette.secondary.main,
-				}}
-			>
-				Artistas
-			</StyledLink>
+
 			<StyledLink
 				sx={{
 					color:
@@ -185,7 +174,7 @@ const NimbusMenu = (props) => {
 				}}
 				to="/buscador"
 			>
-				Buscador
+				Buscador de artistas
 			</StyledLink>
 			{!isMobile ? (
 				<StyledLink

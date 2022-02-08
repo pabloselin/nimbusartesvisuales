@@ -3,6 +3,7 @@ import { styled } from "@mui/system";
 import { useState, useEffect, useRef } from "@wordpress/element";
 import nimbusLogo from "../imgs/nimbusLogo";
 import nimbusLogoDesktop from "../imgs/nimbusLogoDesktop";
+import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Menu from "@mui/material/Menu";
@@ -87,7 +88,14 @@ const NimbusMenu = (props) => {
 				onClose={toggleDrawer(false)}
 			>
 				<MenuItem sx={{ borderBottom: "1px solid #0A0A1F" }}>
-					MENU
+					<Typography
+						sx={{
+							fontFamily: "Bebas Neue, sans-serif",
+							color: theme.palette.primary.main,
+						}}
+					>
+						MENU
+					</Typography>
 				</MenuItem>
 				<MenuItem onClick={handleClose}>
 					<StyledLink

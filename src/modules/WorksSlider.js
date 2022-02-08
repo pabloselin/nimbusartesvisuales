@@ -171,7 +171,9 @@ const WorksSlider = (props) => {
 										className={
 											props.square ? "square" : "normal"
 										}
-										onClick={() => setBigImg(work)}
+										onClick={() =>
+											!props.full && setBigImg(work)
+										}
 										src={imageSize(work)}
 									/>
 									{props.full && (

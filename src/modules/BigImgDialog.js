@@ -37,6 +37,10 @@ const StyledDialogTitle = styled(DialogTitle)`
 	right: 0;
 `;
 
+const CloseButton = styled("p")`
+	margin: 0;
+`;
+
 const BigImgDialog = (props) => {
 	const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -52,11 +56,12 @@ const BigImgDialog = (props) => {
 					textAlign: "right",
 				}}
 			>
-				<FontAwesomeIcon
-					onClick={props.handleClose}
-					icon={["fas", "times-circle"]}
-					size={"lg"}
-				/>
+				<CloseButton onClick={props.handleClose}>
+					<FontAwesomeIcon
+						icon={["fas", "times-circle"]}
+						size={"lg"}
+					/>
+				</CloseButton>
 			</StyledDialogTitle>
 			<DialogContent
 				sx={{

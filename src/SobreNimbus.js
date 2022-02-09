@@ -36,6 +36,10 @@ const StyledBox = styled(Box)`
 		margin-bottom: 0;
 		margin-left: -18px;
 		margin-right: -18px;
+		@media screen and (max-width: 768px) {
+			margin-left: 0;
+			margin-right: 0;
+		}
 	}
 
 	.wp-block-column {
@@ -53,8 +57,14 @@ const StyledBox = styled(Box)`
 	}
 
 	.wp-block-column.withimg {
+		@media screen and (max-width: 768px) {
+			padding: 0;
+		}
 		figure {
 			margin: -10px;
+			@media screen and (max-width: 768px) {
+				margin: 0 0 0 -18px;
+			}
 		}
 	}
 
@@ -168,6 +178,9 @@ const SobreNimbus = (props) => {
 							{content.data.title}
 						</SectionTitle>
 					)}
+					<Helmet>
+						{content.data.title} - {nimbus_app_data.site_name}
+					</Helmet>
 					<FullWidthTitle noMargin variant="h1" borderedTop>
 						Somos
 					</FullWidthTitle>

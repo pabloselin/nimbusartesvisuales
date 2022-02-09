@@ -98,12 +98,6 @@ const NimbusApp = (props) => {
 			<CssBaseline />
 			<Container maxWidth="lg" disableGutters>
 				<Router>
-					<Helmet>
-						<title>
-							{nimbus_app_data.site_name} -{" "}
-							{nimbus_app_data.site_description}
-						</title>
-					</Helmet>
 					<ThemeProvider theme={nimbusTheme}>
 						<NimbusMenu />
 						<Routes>
@@ -174,6 +168,9 @@ const NimbusApp = (props) => {
 								path="*"
 								element={
 									<main>
+										<Helmet>
+											<title>No encontrado</title>
+										</Helmet>
 										<p>No encontrado</p>
 									</main>
 								}

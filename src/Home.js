@@ -1,5 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-
+import { Helmet } from "react-helmet";
 import TaxView from "./TaxView";
 import Artists from "./Artists";
 import Search from "./Search";
@@ -15,7 +15,12 @@ const Home = (props) => {
 	return (
 		<>
 			<SectionTitle>{nimbus_app_data.site_description}</SectionTitle>
-
+			<Helmet>
+				<title>
+					{nimbus_app_data.site_name} -{" "}
+					{nimbus_app_data.site_description}
+				</title>
+			</Helmet>
 			<FullWidthTitle borderedTop variant="h1">
 				Muestra de Obras
 			</FullWidthTitle>

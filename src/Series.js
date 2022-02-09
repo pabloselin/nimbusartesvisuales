@@ -10,6 +10,7 @@ import Loading from "./components/Loading";
 import NimbusVideo from "./modules/NimbusVideo";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import Helmet from "react-helmet";
 
 const Series = (props) => {
 	//fetch series
@@ -44,6 +45,15 @@ const Series = (props) => {
 				<>
 					{nimbus_app_data.pages.serie_documental_nimbus && (
 						<>
+							<Helmet>
+								<title>
+									{
+										nimbus_app_data.pages
+											.serie_documental_nimbus.title
+									}{" "}
+									- {nimbus_app_data.site_name}
+								</title>
+							</Helmet>
 							<SectionTitle sx={{ p: 0 }}>
 								{
 									nimbus_app_data.pages

@@ -16,6 +16,7 @@ import TaxView from "./TaxView";
 import LetterSlider from "./modules/LetterSlider";
 import SectionTitle from "./components/SectionTitle";
 import checkEmptyLetters from "./components/checkEmptyLetters";
+import { Helmet } from "react-helmet";
 
 const LetterHeading = styled(Typography)`
 	text-align: center;
@@ -59,15 +60,30 @@ const Artists = (props) => {
 			setEmpties({ empties: checkEmptyLetters(content.artists) });
 		}
 	}, [content]);
+	const termName = () => {
+		if (content.artists && content.artists.length && termSlug) {
+			console.log(content.termData.name);
+		}
+	};
 
 	return (
 		<>
+			<Helmet>
+				<title>Artistas - {nimbus_app_data.site_name}</title>
+			</Helmet>
 			{!props.front && <SectionTitle>Artistas</SectionTitle>}
 			{termSlug && content.artists && content.artists.length && (
 				<FullWidthTitle variant="h1" padded>
 					{content.termData.name}
+					<Helmet>
+						<title>
+							Artistas - {content.termData.name} -{" "}
+							{nimbus_app_data.site_name}
+						</title>
+					</Helmet>
 				</FullWidthTitle>
 			)}
+
 			<Box
 				sx={{
 					backgroundColor: theme.palette.background.default,

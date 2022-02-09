@@ -35,6 +35,11 @@ const Serie = (props) => {
 				<>
 					<FullWidthTitle variant="h1">
 						{video.data.name}
+						<Helmet>
+							<title>
+								{video.data.name} -{nimbus_app_data.site_name}
+							</title>
+						</Helmet>
 					</FullWidthTitle>
 					<NimbusVideo expanded video={video.data} />
 				</>

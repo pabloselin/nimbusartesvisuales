@@ -79,6 +79,7 @@ const StyledLink = styled(Link)`
 const WorksSlider = (props) => {
 	const theme = useTheme();
 	const [bigImg, setBigImg] = useState({});
+	const [index, setIndex] = useState(0);
 	const isMobile = useMediaQuery("(max-width: 768px)");
 	const [slide, setSlide] = useState(0);
 
@@ -149,13 +150,16 @@ const WorksSlider = (props) => {
 				spaceBetween={12}
 			>
 				{props.works &&
-					props.works.map((work) => (
+					props.works.map((work, idx) => (
 						<SwiperSlide>
 							<StyledSlideContent>
 								<ImageContainer>
 									{props.front && (
 										<div
-											onClick={() => setBigImg(work)}
+											onClick={() => {
+												setBigImg(work);
+												setIndex(idx);
+											}}
 											className="artistOverlay"
 										>
 											<Typography variant="h2">
@@ -242,7 +246,7 @@ const WorksSlider = (props) => {
 						theme={theme}
 						artist={props.artist}
 						artistSlug={props.artistSlug}
-						activeSlide={slide}
+						activeSlide={props.front ? index : slide}
 						works={props.works}
 					/>
 				)}

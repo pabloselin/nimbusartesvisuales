@@ -73,7 +73,9 @@ const Artist = (props) => {
 			{artist.data !== undefined ? (
 				<StyledArtist>
 					<Helmet>
-						<title> - {nimbus_app_data.site_name}</title>
+						<title>
+							{artistName} - {nimbus_app_data.site_name}
+						</title>
 					</Helmet>
 					<SectionTitle>Ficha de Artista</SectionTitle>
 					<FullWidthTitle variant="h1">{artistName}</FullWidthTitle>
@@ -153,8 +155,8 @@ const Artist = (props) => {
 								</>
 							)}
 							{artist.data.additionalinfo &&
-								artist.data.additionalinfo[0].descinfo.length >
-									0 && (
+								artist.data.additionalinfo[0].descinfo.length &&
+								!isMobile > 0 && (
 									<>
 										<FullWidthTitle variant="h3" dhb>
 											Información Adicional
@@ -199,6 +201,42 @@ const Artist = (props) => {
 									title="Muestra de Obras"
 									works={artist.data.works}
 								/>
+								{isMobile &&
+									artist.data.additionalinfo &&
+									artist.data.additionalinfo[0].descinfo
+										.length > 0 && (
+										<>
+											<FullWidthTitle variant="h3" dhb>
+												Información Adicional
+											</FullWidthTitle>
+											<Box
+												sx={{
+													padding:
+														"12px 24px 12px 24px",
+													backgroundColor:
+														theme.palette.background
+															.default,
+												}}
+											>
+												{artist.data.additionalinfo.map(
+													(info) => (
+														<Typography
+															sx={{ pb: 2 }}
+														>
+															<a
+																target="_blank"
+																href={
+																	info.linkinfo
+																}
+															>
+																{info.descinfo}
+															</a>
+														</Typography>
+													)
+												)}
+											</Box>
+										</>
+									)}
 							</Grid>
 						)}
 					</Grid>

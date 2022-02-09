@@ -15,6 +15,7 @@ import AccordionContent from "./modules/AccordionContent";
 import FullWidthTitle from "./components/FullWidthTitle";
 import SectionTitle from "./components/SectionTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Helmet from "react-helmet";
 
 const CustomInput = forwardRef(function CustomInput(props, ref) {
 	return (
@@ -103,6 +104,11 @@ const Search = (props) => {
 			{props.expanded && (
 				<>
 					<SectionTitle>Buscador de Artistas</SectionTitle>
+					<Helmet>
+						<title>
+							Buscador de Artistas - {nimbus_app_data.site_name}
+						</title>
+					</Helmet>
 					<AccordionContent
 						elements={[
 							{

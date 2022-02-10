@@ -155,8 +155,9 @@ const Artist = (props) => {
 								</>
 							)}
 							{artist.data.additionalinfo &&
-								artist.data.additionalinfo[0].descinfo.length &&
-								!isMobile > 0 && (
+								artist.data.additionalinfo[0].descinfo.length >
+									0 &&
+								!isMobile && (
 									<>
 										<FullWidthTitle variant="h3" dhb>
 											Información Adicional
@@ -254,7 +255,7 @@ const Artist = (props) => {
 
 					<Grid
 						container
-						columns={{ xs: 1, sm: 12, md: 12 }}
+						columns={{ xs: 12, sm: 12, md: 12 }}
 						sx={{
 							backgroundColor: "#737373",
 							typography: {
@@ -262,7 +263,7 @@ const Artist = (props) => {
 							},
 						}}
 					>
-						<Grid item xs={1} md={6}>
+						<Grid item xs={12} md={6}>
 							<Box
 								sx={{
 									padding: "12px 24px 12px 24px",
@@ -331,7 +332,7 @@ const Artist = (props) => {
 								)}
 							</Box>
 						</Grid>
-						<Grid item xs={1} md={6}>
+						<Grid item xs={12} md={6}>
 							<Box
 								sx={{
 									padding: "12px 24px 12px 24px",

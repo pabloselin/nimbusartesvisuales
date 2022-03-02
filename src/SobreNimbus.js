@@ -51,7 +51,7 @@ const StyledBox = styled(Box)`
 		}
 
 		h3 {
-			margin-top: 12px;
+			margin-top: 24px;
 		}
 	}
 

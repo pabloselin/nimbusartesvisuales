@@ -216,7 +216,7 @@ const SobreNimbus = (props) => {
 							__html: content.data.fields.seccion_colaboran,
 						}}
 						sx={{
-							backgroundColor: "#f0f0f0",
+							backgroundColor: "white",
 							p: 2,
 							fontFamily: "Inconsolata, sans-serif",
 						}}

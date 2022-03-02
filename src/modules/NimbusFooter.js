@@ -27,14 +27,13 @@ const StyledButton = styled(Button)({
 const NimbusFooter = (props) => {
 	const theme = useTheme();
 	const location = useLocation();
-	console.log(location.pathname);
 	return (
 		<Grid
 			sx={{
 				backgroundColor: theme.palette.background.dark,
 				mt:
-					location.pathname === "/sobre-nimbus" ||
-					location.pathname === "/sobre-nimbus/"
+					props.path === "/sobre-nimbus" ||
+					props.path === "/sobre-nimbus/"
 						? 0
 						: 1,
 				typography: {
@@ -45,8 +44,8 @@ const NimbusFooter = (props) => {
 			container
 			columns={{ xs: 12, sm: 12, md: 12 }}
 		>
-			{location.pathname === "/sobre-nimbus/" ||
-				(location.pathname === "/sobre-nimbus" ? (
+			{props.path === "/sobre-nimbus/" ||
+				(props.path === "/sobre-nimbus" ? (
 					<></>
 				) : (
 					<Grid item md={4} sx={{ p: 3 }}>

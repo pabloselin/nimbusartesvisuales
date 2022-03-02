@@ -30,12 +30,14 @@ const Series = (props) => {
 
 	useEffect(() => {
 		async function getContent() {
+			console.log("fetching");
 			apiFetch({ path: fetchroute }).then((result) => {
 				setContent({
 					videos: result,
 				});
 			});
 		}
+
 		getContent();
 	}, [videoSlug]);
 

@@ -1,6 +1,12 @@
 import { render, Component, useState, useEffect } from "@wordpress/element";
 import apiFetch from "@wordpress/api-fetch";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Route,
+	Routes,
+	Link,
+	useLocation,
+} from "react-router-dom";
 
 import { Helmet } from "react-helmet";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -80,6 +86,7 @@ const NimbusApp = (props) => {
 	};
 
 	const [pos, setPos] = useState("top");
+
 	//const isMobile = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
 	useEffect(() => {
@@ -176,7 +183,7 @@ const NimbusApp = (props) => {
 								}
 							/>
 						</Routes>
-						<NimbusFooter />
+						<NimbusFooter path={location.pathname} />
 						<Fade in={pos === "moved" ? true : false}>
 							<Fab
 								color="primary"

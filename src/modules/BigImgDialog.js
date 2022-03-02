@@ -35,6 +35,7 @@ const StyledDialogTitle = styled(DialogTitle)`
 	position: absolute;
 	top: 0;
 	right: 0;
+	padding: 12px 24px 0 0;
 `;
 
 const CloseButton = styled("p")`
@@ -54,6 +55,7 @@ const BigImgDialog = (props) => {
 			<StyledDialogTitle
 				sx={{
 					textAlign: "right",
+					zIndex: 10000,
 				}}
 			>
 				<CloseButton onClick={props.handleClose}>

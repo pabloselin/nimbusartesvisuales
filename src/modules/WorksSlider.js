@@ -125,7 +125,9 @@ const WorksSlider = (props) => {
 	const imageSize = (work) => {
 		let size;
 		if (props.square) {
-			size = work.images.sizes.thumbnail.url;
+			size = work.images.sizes.thumbnail.url
+				? work.images.sizes.thumbnail.url
+				: work.images.url;
 		} else if (work.images.sizes.large) {
 			size = work.images.sizes.large.url;
 		} else {
@@ -142,7 +144,6 @@ const WorksSlider = (props) => {
 				slidesPerView={props.front && !isMobile ? 3 : 1}
 				modules={[Navigation]}
 				onSlideChange={(swiper) => setSlide(swiper.activeIndex)}
-				onSwiper={(swiper) => console.log(swiper)}
 				navigation={{
 					nextEl: ".swiperNext",
 					prevEl: ".swiperPrev",

@@ -85,6 +85,10 @@ const StyledBox = styled(Box)`
 		margin-top: 0;
 	}
 
+	h3 {
+		margin-bottom: 0;
+	}
+
 	img {
 		max-width: 100%;
 		height: auto;

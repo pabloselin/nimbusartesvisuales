@@ -2,6 +2,7 @@ import { useEffect, useState } from "@wordpress/element";
 import Box from "@mui/material/Box";
 import { Navigation, EffectFade } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Controller } from "swiper";
 import { Link } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -82,6 +83,7 @@ const WorksSlider = (props) => {
 	const [index, setIndex] = useState(0);
 	const isMobile = useMediaQuery("(max-width: 768px)");
 	const [slide, setSlide] = useState(0);
+	const [controlledSwiper, setControlledSwiper] = useState(null);
 
 	const ImageContainer = styled("div")`
 		background-color: ${props.full ? "#1A1A1A" : "white"};
@@ -125,7 +127,7 @@ const WorksSlider = (props) => {
 	const imageSize = (work) => {
 		let size;
 		if (props.square) {
-			size = work.images.sizes.thumbnail.url
+			size = work.images.sizes.thumbnail
 				? work.images.sizes.thumbnail.url
 				: work.images.url;
 		} else if (work.images.sizes.large) {

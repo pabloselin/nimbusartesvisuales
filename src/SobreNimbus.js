@@ -151,20 +151,6 @@ const SobreNimbus = (props) => {
 		},
 	};
 
-	// useEffect(() => {
-	// 	async function getContent(artistSlug) {
-	// 		let fetchroute = "/wp/v2/pages?slug=sobre-nimbus";
-
-	// 		apiFetch({ path: fetchroute }).then((result) => {
-	// 			setContent({ data: result[0] });
-	// 		});
-	// 	}
-
-	// 	console.log("fetching page content");
-
-	// 	getContent();
-	// }, []);
-
 	return (
 		<Grid container columns={{ xs: 12, sm: 12 }}>
 			{content.data && (
@@ -179,7 +165,9 @@ const SobreNimbus = (props) => {
 						</SectionTitle>
 					)}
 					<Helmet>
-						{content.data.title} - {nimbus_app_data.site_name}
+						<title>
+							{content.data.title} - {nimbus_app_data.site_name}
+						</title>
 					</Helmet>
 					<FullWidthTitle noMargin variant="h1" borderedTop>
 						Somos

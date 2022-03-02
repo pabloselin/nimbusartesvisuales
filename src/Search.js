@@ -112,6 +112,16 @@ const Search = (props) => {
 					<AccordionContent
 						elements={[
 							{
+								title: "Artistas",
+								component: (
+									<Artists
+										front
+										artistfetchurl="/nimbus/v1/artists"
+									/>
+								),
+								id: "panel-artistas",
+							},
+							{
 								title: "Disciplinas",
 								component: (
 									<TaxView
@@ -130,16 +140,6 @@ const Search = (props) => {
 									/>
 								),
 								id: "panel-territorios",
-							},
-							{
-								title: "Artistas",
-								component: (
-									<Artists
-										front
-										artistfetchurl="/nimbus/v1/artists"
-									/>
-								),
-								id: "panel-artistas",
 							},
 						]}
 					/>

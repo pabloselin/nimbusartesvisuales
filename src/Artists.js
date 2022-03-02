@@ -149,7 +149,16 @@ const Artists = (props) => {
 																								.images
 																								.sizes
 																								.thumbnail
-																								.url
+																							? artist
+																									.works[0]
+																									.images
+																									.sizes
+																									.thumbnail
+																									.url
+																							: artist
+																									.works[0]
+																									.images
+																									.url
 																						: null
 																				}
 																				key={

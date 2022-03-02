@@ -65,7 +65,7 @@ const StyledBox = styled(Box)`
 			padding: 0;
 		}
 		figure {
-			margin: -10px;
+			margin: -10px -10px -10px -22px;
 			@media screen and (max-width: 768px) {
 				margin: 0 0 0 -18px;
 			}

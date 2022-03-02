@@ -108,6 +108,7 @@ const StyledBox = styled(Box)`
 		border-radius: 30px;
 		text-decoration: none;
 		color: #333399;
+		font-size: 14px;
 		&:hover {
 			background-color: #333399;
 			color: white;

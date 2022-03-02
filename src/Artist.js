@@ -81,7 +81,7 @@ const Artist = (props) => {
 						Ficha de Artista{" "}
 						<Typography
 							variant="body2"
-							sx={{ display: "inline-block" }}
+							sx={{ display: "inline-block", pl: 2 }}
 						>
 							<RouterLink to="/buscador/#artistas">
 								[ver todos los artistas]

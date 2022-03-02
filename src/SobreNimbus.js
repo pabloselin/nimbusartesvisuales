@@ -45,9 +45,13 @@ const StyledBox = styled(Box)`
 	.wp-block-column {
 		border-right: 2px solid white;
 		border-top: 2px solid white;
-		padding: 12px;
+		padding: 12px 12px 12px 24px;
 		figure {
 			margin-bottom: 0;
+		}
+
+		h3 {
+			margin-top: 12px;
 		}
 	}
 

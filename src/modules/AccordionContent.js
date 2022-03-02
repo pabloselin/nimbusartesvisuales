@@ -12,7 +12,7 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)((props) => ({
 
 export default function AccordionContent(props) {
 	const [expanded, setExpanded] = useState(false);
-
+	const [firstExpanded, setFirstExpanded] = useState(false);
 	const handleChange = (panel) => (event, isExpanded) => {
 		setExpanded(isExpanded ? panel : false);
 	};
@@ -23,7 +23,7 @@ export default function AccordionContent(props) {
 				<Accordion
 					disableGutters
 					elevation={0}
-					expanded={expanded === element.id}
+					expanded={element.expanded ? true : expanded === element.id}
 					onChange={handleChange(element.id)}
 					sx={{
 						marginTop: 0,
@@ -60,6 +60,7 @@ export default function AccordionContent(props) {
 					</AccordionSummary>
 					<AccordionDetails sx={{ bgcolor: "#f0f0f0", padding: 0 }}>
 						<div>
+							{element.expanded && element.component}
 							{expanded === element.id && element.component}
 						</div>
 					</AccordionDetails>

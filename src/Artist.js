@@ -77,7 +77,18 @@ const Artist = (props) => {
 							{artistName} - {nimbus_app_data.site_name}
 						</title>
 					</Helmet>
-					<SectionTitle>Ficha de Artista</SectionTitle>
+					<SectionTitle>
+						Ficha de Artista{" "}
+						<Typography
+							variant="body2"
+							sx={{ display: "inline-block" }}
+						>
+							<RouterLink to="/buscador/#artistas">
+								[ver todos los artistas]
+							</RouterLink>
+						</Typography>
+					</SectionTitle>
+
 					<FullWidthTitle variant="h1">{artistName}</FullWidthTitle>
 					<Grid container columns={{ xs: 12, sm: 12, md: 12 }}>
 						<Grid

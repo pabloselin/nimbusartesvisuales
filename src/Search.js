@@ -1,5 +1,6 @@
 import apiFetch from "@wordpress/api-fetch";
 import { useState, useEffect, forwardRef } from "@wordpress/element";
+import { useLocation } from "react-router-dom";
 import Fuse from "fuse.js";
 import TextField from "@mui/material/TextField";
 import InputUnstyled from "@mui/base/InputUnstyled";
@@ -60,6 +61,7 @@ const Search = (props) => {
 	const [searchResults, setSearchResults] = useState([]);
 	const [artists, setArtists] = useState([{ data: null }]);
 	const theme = useTheme();
+	const location = useLocation();
 
 	const options = {
 		keys: [
@@ -120,6 +122,7 @@ const Search = (props) => {
 									/>
 								),
 								id: "panel-artistas",
+								expanded: location.hash === "#artistas",
 							},
 							{
 								title: "Disciplinas",

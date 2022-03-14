@@ -159,7 +159,11 @@ const NimbusMenu = (props) => {
 	return (
 		<NimbusNav>
 			<Link to="/">
-				<img src={isMobile ? nimbusLogo : nimbusLogoDesktop} />
+				<img
+					width={isMobile ? 64 : 200}
+					height={isMobile ? 45 : 82}
+					src={isMobile ? nimbusLogo : nimbusLogoDesktop}
+				/>
 			</Link>
 
 			<StyledLink

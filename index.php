@@ -13,10 +13,11 @@
  */
 
 get_header();
+$frontpage = get_page(get_option('page_on_front'));
 ?>
 
 	<main id="nimbusRoot" class="site-main">
-
+        
 	</main><!-- #main -->
 
 <?php

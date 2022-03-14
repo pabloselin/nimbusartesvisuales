@@ -1,32 +1,43 @@
 import { useEffect, useState } from "@wordpress/element";
 import Box from "@mui/material/Box";
-import { Navigation, EffectFade } from "swiper";
+import { Navigation, EffectFade, Lazy } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Controller } from "swiper";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/lazy";
 import { styled } from "@mui/system";
 import { useTheme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import BigImgDialog from "./BigImgDialog";
+import Skeleton from "@mui/material/Skeleton";
 import FichaObra from "./FichaObra";
 
 const StyledSlideContent = styled("div")`
 	text-align: center;
-	img {
+
+	img,
+	.swiper-lazy-preloader {
+		background-color: #f0f0f0;
 		max-height: 50vh;
 		width: auto;
 		max-width: 100%;
 		height: auto;
+		opacity: 0.5;
+		transition: all ease-in 0.2s;
 		&.square {
 			max-height: 392px;
 			height: 392px;
 			width: 392px;
 		}
 	}
+	img.swiper-lazy-loaded {
+		opacity: 1;
+	}
+
 	p {
 		text-align: left;
 	}
@@ -84,6 +95,7 @@ const WorksSlider = (props) => {
 	const isMobile = useMediaQuery("(max-width: 768px)");
 	const [slide, setSlide] = useState(0);
 	const [controlledSwiper, setControlledSwiper] = useState(null);
+	const navigate = useNavigate();
 
 	const ImageContainer = styled("div")`
 		background-color: ${props.full ? "#1A1A1A" : "white"};
@@ -144,11 +156,15 @@ const WorksSlider = (props) => {
 			<Swiper
 				initialSlide={props.initialSlide ? props.initialSlide : 0}
 				slidesPerView={props.front && !isMobile ? 3 : 1}
-				modules={[Navigation]}
-				onSlideChange={(swiper) => setSlide(swiper.activeIndex)}
+				modules={[Navigation, Lazy]}
+				//onSlideChange={(swiper) => setSlide(swiper.activeIndex)}
 				navigation={{
 					nextEl: ".swiperNext",
 					prevEl: ".swiperPrev",
+				}}
+				preloadImages={false}
+				lazy={{
+					loadPrevNext: true,
 				}}
 				spaceBetween={12}
 			>
@@ -160,7 +176,11 @@ const WorksSlider = (props) => {
 									{props.front && (
 										<div
 											onClick={() => {
-												setBigImg(work);
+												props.square
+													? navigate(
+															`/artistas/${work.slug}`
+													  )
+													: setBigImg(work);
 												setIndex(idx);
 											}}
 											className="artistOverlay"
@@ -176,13 +196,18 @@ const WorksSlider = (props) => {
 									)}
 									<img
 										className={
-											props.square ? "square" : "normal"
+											props.square
+												? "square swiper-lazy"
+												: "normal swiper-lazy"
 										}
 										onClick={() =>
 											!props.full && setBigImg(work)
 										}
-										src={imageSize(work)}
+										data-src={imageSize(work)}
 									/>
+									<div className="swiper-lazy-preloader swiper-lazy-preloader-white">
+										<Skeleton variant="rectangular" />
+									</div>
 									{props.full && (
 										<>
 											<Box

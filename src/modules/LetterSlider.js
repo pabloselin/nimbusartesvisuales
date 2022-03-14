@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import { styled } from "@mui/system";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import alphabet from "../components/alphabet";
@@ -39,6 +40,7 @@ const StyledSwiper = styled(Swiper)`
 
 const LetterSlider = (props) => {
 	const theme = useTheme();
+	const isMobile = useMediaQuery("(max-width: 768px)");
 	const [emptyLetters, setEmptyLetters] = useState([{ empties: null }]);
 	useEffect(() => {
 		const checkEmptyLetters = () => {
@@ -68,7 +70,7 @@ const LetterSlider = (props) => {
 			}}
 		>
 			<StyledSwiper
-				slidesPerView={6}
+				slidesPerView={isMobile ? 6 : 24}
 				modules={[Navigation]}
 				navigation={{
 					nextEl: ".swiperNext",

@@ -7,6 +7,7 @@ import {
 	Link,
 	useLocation,
 } from "react-router-dom";
+import Webfont from "webfontloader";
 
 import { Helmet } from "react-helmet";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -79,6 +80,12 @@ const Version = styled("span")`
 	display: inline-block;
 	padding: 3px;
 `;
+
+Webfont.load({
+	google: {
+		families: ["Bebas Neue", "Inconsolata:400,700"],
+	},
+});
 
 const NimbusApp = (props) => {
 	const topScroll = () => {

@@ -26,7 +26,7 @@ const StyledSlideContent = styled("div")`
 		width: auto;
 		max-width: 100%;
 		height: auto;
-		opacity: 0.5;
+		opacity: 1;
 		transition: all ease-in 0.2s;
 		&.square {
 			max-height: 392px;
@@ -157,15 +157,15 @@ const WorksSlider = (props) => {
 				initialSlide={props.initialSlide ? props.initialSlide : 0}
 				slidesPerView={props.front && !isMobile ? 3 : 1}
 				modules={[Navigation, Lazy]}
+				watchSlidesProgress={props.front ? true : false}
 				//onSlideChange={(swiper) => setSlide(swiper.activeIndex)}
 				navigation={{
 					nextEl: ".swiperNext",
 					prevEl: ".swiperPrev",
 				}}
 				preloadImages={false}
-				lazy={{
-					loadPrevNext: true,
-				}}
+				observer={true}
+				lazy={false}
 				spaceBetween={12}
 			>
 				{props.works &&
@@ -203,11 +203,9 @@ const WorksSlider = (props) => {
 										onClick={() =>
 											!props.full && setBigImg(work)
 										}
-										data-src={imageSize(work)}
+										src={imageSize(work)}
 									/>
-									<div className="swiper-lazy-preloader swiper-lazy-preloader-white">
-										<Skeleton variant="rectangular" />
-									</div>
+
 									{props.full && (
 										<>
 											<Box
